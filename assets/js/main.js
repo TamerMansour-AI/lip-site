@@ -46,19 +46,22 @@
     const resetMenu = () => {
       panel.classList.add('hidden');
       toggle.setAttribute('aria-expanded', 'false');
-      backdrop?.classList.add('hidden');
-      document.body.classList.remove('menu-open', 'nav-open', 'modal-open');
+      backdrop?.classList.remove('active');
+      backdrop?.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('menu-open');
     };
     const closePanel = () => {
       panel.classList.add('hidden');
       toggle.setAttribute('aria-expanded', 'false');
-      backdrop?.classList.add('hidden');
-      document.body.classList.remove('menu-open', 'nav-open', 'modal-open');
+      backdrop?.classList.remove('active');
+      backdrop?.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('menu-open');
     };
     const openPanel = () => {
       panel.classList.remove('hidden');
       toggle.setAttribute('aria-expanded', 'true');
-      backdrop?.classList.remove('hidden');
+      backdrop?.classList.add('active');
+      backdrop?.setAttribute('aria-hidden', 'false');
       document.body.classList.add('menu-open');
     };
 
