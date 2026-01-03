@@ -103,11 +103,19 @@
   }
 
   function setupSmoothScroll() {
-    document.querySelectorAll('a[href^="#"]').forEach((link) => {
+    const getHashTarget = (href) => {
+      if (!href || !href.includes('#')) return null;
+      const hash = href.slice(href.indexOf('#'));
+      return hash.length > 1 ? hash : null;
+    };
+
+    document.querySelectorAll('a[href*="#"]').forEach((link) => {
       link.addEventListener('click', (e) => {
-        const targetId = link.getAttribute('href');
-        if (!targetId || targetId.length < 2) return;
-        const target = document.querySelector(targetId);
+        const targetHash = getHashTarget(link.getAttribute('href'));
+        if (!targetHash) return;
+        const resolved = new URL(link.getAttribute('href'), window.location.href);
+        if (resolved.pathname !== window.location.pathname) return;
+        const target = document.querySelector(targetHash);
         if (target) {
           e.preventDefault();
           target.scrollIntoView({ behavior: 'smooth' });
@@ -119,15 +127,19 @@
   function setupActiveLinks() {
     const links = Array.from(document.querySelectorAll('[data-nav-link]'));
     if (!links.length) return;
-    const sections = Array.from(
+    const ids = Array.from(
       new Set(
         links
           .map((link) => link.getAttribute('data-nav-link'))
           .filter(Boolean)
       )
-    )
-      .map((id) => document.getElementById(id))
-      .filter(Boolean);
+    );
+
+    const sections = Array.from(
+      ids
+        .map((id) => document.getElementById(id))
+        .filter(Boolean)
+    ).sort((a, b) => a.offsetTop - b.offsetTop);
 
     const setActive = (id) => {
       links.forEach((link) => {
