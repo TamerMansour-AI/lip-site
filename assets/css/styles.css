@@ -800,6 +800,30 @@ footer {
   object-fit: contain;
 }
 
+.infographic-card .infographic-thumb {
+  height: 260px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.infographic-card .infographic-thumb img {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  max-height: none !important;
+  object-fit: contain !important;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .infographic-card .infographic-thumb {
+    height: 200px;
+  }
+}
+
 .contact-card {
   background: linear-gradient(140deg, rgba(255, 255, 255, 0.9), rgba(245, 243, 255, 0.95));
   border: 1px solid rgba(124, 58, 237, 0.18);
