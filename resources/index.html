@@ -27,35 +27,47 @@
   <!-- Analytics placeholder: insert analytics snippet here -->
 </head>
 <body class="antialiased text-slate-900">
-  <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-3 focus:left-3 bg-white px-4 py-2 rounded-md shadow">Skip to content</a>
-  <header class="sticky top-0 z-30 border-b border-slate-200 nav-blur">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
-      <a href="./" data-base="1" class="text-xl font-extrabold text-slate-900 tracking-tight" aria-label="Lesson Intelligence Packs home">LIP</a>
-      <button id="mobile-toggle" class="sm:hidden inline-flex items-center justify-center p-2 rounded-md border border-slate-200" aria-expanded="false" aria-controls="nav-menu">
-        <span class="sr-only">Toggle navigation</span>
-        <svg class="h-5 w-5 text-slate-700" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" /></svg>
-      </button>
-      <nav id="nav-menu" class="hidden flex sm:flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6 text-sm font-semibold text-slate-700">
-        <a href="./" data-base="1" class="hover:text-violet-600">Home</a>
-        <a href="resources/" data-base="1" class="hover:text-violet-600">Resources</a>
-        <a href="index.html#contact" data-base="1" class="hover:text-violet-600">Contact</a>
-      </nav>
+  <a href="#main" class="skip-link">Skip to content</a>
+  <header class="sticky top-0 z-30">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-3">
+      <div class="nav-shell flex items-center gap-4 px-3 py-2">
+        <div class="flex items-center gap-3 flex-1">
+          <a href="./" data-base="1" class="text-xl font-extrabold text-slate-900 tracking-tight" aria-label="Lesson Intelligence Packs home">LIP</a>
+        </div>
+        <nav id="nav-menu" class="hidden sm:flex items-center gap-1 text-sm font-semibold text-slate-700">
+          <a href="./" data-base="1" class="nav-link">Home</a>
+          <a href="resources/" data-base="1" class="nav-link">Resources</a>
+          <a href="index.html#contact" data-base="1" class="nav-link">Contact</a>
+        </nav>
+        <button id="mobile-toggle" class="sm:hidden inline-flex items-center justify-center p-2 nav-toggle" aria-expanded="false" aria-controls="mobile-panel">
+          <span class="sr-only">Toggle navigation</span>
+          <svg class="h-5 w-5 text-slate-800" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" /></svg>
+        </button>
+      </div>
+      <div id="mobile-panel" class="mobile-panel mt-2 p-3 grid gap-2 sm:hidden hidden" aria-label="Mobile navigation">
+        <a href="./" data-base="1" class="w-full inline-flex items-center justify-between px-3 py-2 rounded-lg border border-slate-200 font-semibold text-slate-800 bg-white">Home<span aria-hidden="true">↘</span></a>
+        <a href="resources/" data-base="1" class="w-full inline-flex items-center justify-between px-3 py-2 rounded-lg border border-slate-200 font-semibold text-slate-800 bg-white">Resources<span aria-hidden="true">↘</span></a>
+        <a href="index.html#contact" data-base="1" class="w-full inline-flex items-center justify-between px-3 py-2 rounded-lg border border-slate-200 font-semibold text-slate-800 bg-white">Contact<span aria-hidden="true">↘</span></a>
+      </div>
     </div>
   </header>
 
   <main id="main">
-    <section class="hero-gradient text-white pt-16 pb-12">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6">
-        <span class="badge">Resources</span>
-        <h1 class="text-4xl sm:text-5xl font-black leading-tight mt-4">Resources</h1>
-        <p class="text-lg text-slate-100 mt-2">Replace placeholder files in assets/docs and assets/styles without changing code.</p>
+    <section class="hero-gradient text-white pt-20 pb-14 sm:pb-16">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 relative z-10 space-y-4">
+        <span class="eyebrow">Resources hub</span>
+        <h1 class="text-4xl sm:text-5xl font-black leading-tight text-slate-50">Resources</h1>
+        <p class="text-lg text-slate-100 max-w-3xl">Replace placeholder files in assets/docs and assets/styles without changing code.</p>
       </div>
     </section>
 
     <section class="py-12 bg-surface">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 space-y-6">
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-          <h2 class="section-title">Pilot deliverables (PDF placeholders)</h2>
+          <div class="space-y-2">
+            <span class="section-divider">Pilot deliverables</span>
+            <h2 class="section-title">Pilot deliverables (PDF placeholders)</h2>
+          </div>
           <p class="text-sm text-slate-600">Update the files only—no code changes needed.</p>
         </div>
         <div class="section-card p-6 space-y-4">
@@ -118,7 +130,10 @@
     <section id="styles" class="py-12">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 space-y-6">
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-          <h2 class="section-title">Style placeholders</h2>
+          <div class="space-y-2">
+            <span class="section-divider">Style hub</span>
+            <h2 class="section-title">Style placeholders</h2>
+          </div>
           <p class="text-sm text-slate-600">Replace images in assets/styles/ using the same filenames.</p>
         </div>
         <div class="card-grid">

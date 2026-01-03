@@ -38,11 +38,22 @@
 
   function setupMobileNav() {
     const toggle = document.getElementById('mobile-toggle');
-    const menu = document.getElementById('nav-menu');
-    if (!toggle || !menu) return;
+    const panel = document.getElementById('mobile-panel');
+    if (!toggle || !panel) return;
+
+    const links = panel.querySelectorAll('a');
+    const closePanel = () => {
+      panel.classList.add('hidden');
+      toggle.setAttribute('aria-expanded', 'false');
+    };
+
     toggle.addEventListener('click', () => {
-      const isOpen = menu.classList.toggle('hidden');
-      toggle.setAttribute('aria-expanded', (!isOpen).toString());
+      const isHidden = panel.classList.toggle('hidden');
+      toggle.setAttribute('aria-expanded', (!isHidden).toString());
+    });
+
+    links.forEach((link) => {
+      link.addEventListener('click', () => closePanel());
     });
   }
 
@@ -58,6 +69,41 @@
         }
       });
     });
+  }
+
+  function setupActiveLinks() {
+    const links = Array.from(document.querySelectorAll('[data-nav-link]'));
+    if (!links.length) return;
+    const sections = Array.from(
+      new Set(
+        links
+          .map((link) => link.getAttribute('data-nav-link'))
+          .filter(Boolean)
+      )
+    )
+      .map((id) => document.getElementById(id))
+      .filter(Boolean);
+
+    const setActive = (id) => {
+      links.forEach((link) => {
+        const matches = link.getAttribute('data-nav-link') === id;
+        link.classList.toggle('active', matches);
+      });
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActive(entry.target.id);
+          }
+        });
+      },
+      { rootMargin: '-45% 0px -45% 0px', threshold: 0.2 }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+    if (sections[0]) setActive(sections[0].id);
   }
 
   function setupMailto() {
@@ -89,6 +135,7 @@
     rewriteBaseLinks();
     setupMobileNav();
     setupSmoothScroll();
+    setupActiveLinks();
     setupMailto();
   });
 })();
