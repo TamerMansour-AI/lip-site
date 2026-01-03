@@ -13,7 +13,7 @@
       description: 'Four-quadrant breakdown of outputs and classroom-ready assets.',
     },
     {
-      file: 'lip-infographic-03-animated-explainers-pilot-at-a-glance.png',
+      file: 'lip-infographic-03-animated-explainers-pilot.png',
       title: 'Animated Explainers (Pilot) — At a Glance',
       description: 'Snapshot of workflow, formats, and review checkpoints.',
     },
