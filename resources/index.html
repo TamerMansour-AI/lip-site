@@ -1,33 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script>
+    (function () {
+      var segments = window.location.pathname.split('/').filter(Boolean);
+      var basePath = '/';
+      if (window.location.hostname.endsWith('github.io')) {
+        var first = segments[0] || '';
+        basePath = first ? '/' + first + '/' : '/';
+      }
+      document.write('<base href="' + basePath + '">');
+    })();
+  </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Resources for Lesson Intelligence Packs pilot, including placeholder docs and style frames." />
   <meta name="base-path" content="" />
-  <link rel="canonical" href="/resources/" data-base="1" />
+  <link rel="canonical" href="resources/" data-base="1" />
   <meta property="og:title" content="Lesson Intelligence Packs (LIP) – Resources" />
   <meta property="og:description" content="Pilot deliverables, style previews, and NotebookLM output placeholders." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="/resources/" data-base="1" />
+  <meta property="og:url" content="resources/" data-base="1" />
   <title>LIP Resources</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.4/dist/tailwind.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/css/styles.css" data-base="1">
+  <link rel="stylesheet" href="assets/css/styles.css" data-base="1">
   <!-- Analytics placeholder: insert analytics snippet here -->
 </head>
 <body class="antialiased text-slate-900">
   <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-3 focus:left-3 bg-white px-4 py-2 rounded-md shadow">Skip to content</a>
   <header class="sticky top-0 z-30 border-b border-slate-200 nav-blur">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
-      <a href="/" data-base="1" class="text-xl font-extrabold text-slate-900 tracking-tight" aria-label="Lesson Intelligence Packs home">LIP</a>
+      <a href="./" data-base="1" class="text-xl font-extrabold text-slate-900 tracking-tight" aria-label="Lesson Intelligence Packs home">LIP</a>
       <button id="mobile-toggle" class="sm:hidden inline-flex items-center justify-center p-2 rounded-md border border-slate-200" aria-expanded="false" aria-controls="nav-menu">
         <span class="sr-only">Toggle navigation</span>
         <svg class="h-5 w-5 text-slate-700" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" /></svg>
       </button>
       <nav id="nav-menu" class="hidden flex sm:flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6 text-sm font-semibold text-slate-700">
-        <a href="/" data-base="1" class="hover:text-violet-600">Home</a>
-        <a href="/resources/" data-base="1" class="hover:text-violet-600">Resources</a>
-        <a href="/index.html#contact" data-base="1" class="hover:text-violet-600">Contact</a>
+        <a href="./" data-base="1" class="hover:text-violet-600">Home</a>
+        <a href="resources/" data-base="1" class="hover:text-violet-600">Resources</a>
+        <a href="index.html#contact" data-base="1" class="hover:text-violet-600">Contact</a>
       </nav>
     </div>
   </header>
@@ -37,7 +48,7 @@
       <div class="max-w-6xl mx-auto px-4 sm:px-6">
         <span class="badge">Resources</span>
         <h1 class="text-4xl sm:text-5xl font-black leading-tight mt-4">Resources</h1>
-        <p class="text-lg text-slate-100 mt-2">Replace placeholder files in /assets/docs and /assets/styles without changing code.</p>
+        <p class="text-lg text-slate-100 mt-2">Replace placeholder files in assets/docs and assets/styles without changing code.</p>
       </div>
     </section>
 
@@ -55,8 +66,8 @@
                 <p class="text-sm text-slate-600">Quick view of the pilot kit.</p>
               </div>
               <div class="flex gap-2">
-                <a href="/assets/docs/LIP_Pilot_Snapshot.pdf" data-base="1" class="btn-secondary text-xs">View</a>
-                <a href="/assets/docs/LIP_Pilot_Snapshot.pdf" data-base="1" class="btn-primary text-xs">Download</a>
+                <a href="assets/docs/LIP_Pilot_Snapshot.pdf" data-base="1" class="btn-secondary text-xs">View</a>
+                <a href="assets/docs/LIP_Pilot_Snapshot.pdf" data-base="1" class="btn-primary text-xs">Download</a>
               </div>
             </article>
             <article class="border border-slate-200 rounded-lg p-4 flex items-center justify-between">
@@ -65,8 +76,8 @@
                 <p class="text-sm text-slate-600">Scope and outputs.</p>
               </div>
               <div class="flex gap-2">
-                <a href="/assets/docs/Animated_Explainers_Pilot_What_This_Includes.pdf" data-base="1" class="btn-secondary text-xs">View</a>
-                <a href="/assets/docs/Animated_Explainers_Pilot_What_This_Includes.pdf" data-base="1" class="btn-primary text-xs">Download</a>
+                <a href="assets/docs/Animated_Explainers_Pilot_What_This_Includes.pdf" data-base="1" class="btn-secondary text-xs">View</a>
+                <a href="assets/docs/Animated_Explainers_Pilot_What_This_Includes.pdf" data-base="1" class="btn-primary text-xs">Download</a>
               </div>
             </article>
             <article class="border border-slate-200 rounded-lg p-4 flex items-center justify-between">
@@ -75,8 +86,8 @@
                 <p class="text-sm text-slate-600">Decision-ready answers.</p>
               </div>
               <div class="flex gap-2">
-                <a href="/assets/docs/LIP_Short_FAQ.pdf" data-base="1" class="btn-secondary text-xs">View</a>
-                <a href="/assets/docs/LIP_Short_FAQ.pdf" data-base="1" class="btn-primary text-xs">Download</a>
+                <a href="assets/docs/LIP_Short_FAQ.pdf" data-base="1" class="btn-secondary text-xs">View</a>
+                <a href="assets/docs/LIP_Short_FAQ.pdf" data-base="1" class="btn-primary text-xs">Download</a>
               </div>
             </article>
             <article class="border border-slate-200 rounded-lg p-4 flex items-center justify-between">
@@ -85,8 +96,8 @@
                 <p class="text-sm text-slate-600">Frames ready for stakeholder review.</p>
               </div>
               <div class="flex gap-2">
-                <a href="/assets/docs/LIP_Sample_Frames_Guide.pdf" data-base="1" class="btn-secondary text-xs">View</a>
-                <a href="/assets/docs/LIP_Sample_Frames_Guide.pdf" data-base="1" class="btn-primary text-xs">Download</a>
+                <a href="assets/docs/LIP_Sample_Frames_Guide.pdf" data-base="1" class="btn-secondary text-xs">View</a>
+                <a href="assets/docs/LIP_Sample_Frames_Guide.pdf" data-base="1" class="btn-primary text-xs">Download</a>
               </div>
             </article>
             <article class="border border-slate-200 rounded-lg p-4 flex items-center justify-between">
@@ -95,8 +106,8 @@
                 <p class="text-sm text-slate-600">10 visual directions for pilots.</p>
               </div>
               <div class="flex gap-2">
-                <a href="/assets/docs/LIP_Style_Menu.pdf" data-base="1" class="btn-secondary text-xs">View</a>
-                <a href="/assets/docs/LIP_Style_Menu.pdf" data-base="1" class="btn-primary text-xs">Download</a>
+                <a href="assets/docs/LIP_Style_Menu.pdf" data-base="1" class="btn-secondary text-xs">View</a>
+                <a href="assets/docs/LIP_Style_Menu.pdf" data-base="1" class="btn-primary text-xs">Download</a>
               </div>
             </article>
           </div>
@@ -108,77 +119,77 @@
       <div class="max-w-6xl mx-auto px-4 sm:px-6 space-y-6">
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
           <h2 class="section-title">Style placeholders</h2>
-          <p class="text-sm text-slate-600">Replace images in /assets/styles/ using the same filenames.</p>
+          <p class="text-sm text-slate-600">Replace images in assets/styles/ using the same filenames.</p>
         </div>
         <div class="card-grid">
           <article class="style-card">
-            <img src="/assets/styles/style-01.jpg" data-base="1" alt="Style 01 placeholder" class="w-full h-32 object-cover rounded-md border border-slate-200 bg-slate-100" />
+            <img src="assets/styles/style-01.jpg" data-base="1" alt="Style 01 placeholder" class="w-full h-32 object-cover rounded-md border border-slate-200 bg-slate-100" />
             <div class="mt-3">
               <p class="font-semibold text-slate-900">Style 01</p>
-              <p class="text-sm text-slate-600">Drop the real image into /assets/styles/style-01.jpg</p>
+              <p class="text-sm text-slate-600">Drop the real image into assets/styles/style-01.jpg</p>
             </div>
           </article>
           <article class="style-card">
-            <img src="/assets/styles/style-02.jpg" data-base="1" alt="Style 02 placeholder" class="w-full h-32 object-cover rounded-md border border-slate-200 bg-slate-100" />
+            <img src="assets/styles/style-02.jpg" data-base="1" alt="Style 02 placeholder" class="w-full h-32 object-cover rounded-md border border-slate-200 bg-slate-100" />
             <div class="mt-3">
               <p class="font-semibold text-slate-900">Style 02</p>
-              <p class="text-sm text-slate-600">Drop the real image into /assets/styles/style-02.jpg</p>
+              <p class="text-sm text-slate-600">Drop the real image into assets/styles/style-02.jpg</p>
             </div>
           </article>
           <article class="style-card">
-            <img src="/assets/styles/style-03.jpg" data-base="1" alt="Style 03 placeholder" class="w-full h-32 object-cover rounded-md border border-slate-200 bg-slate-100" />
+            <img src="assets/styles/style-03.jpg" data-base="1" alt="Style 03 placeholder" class="w-full h-32 object-cover rounded-md border border-slate-200 bg-slate-100" />
             <div class="mt-3">
               <p class="font-semibold text-slate-900">Style 03</p>
-              <p class="text-sm text-slate-600">Drop the real image into /assets/styles/style-03.jpg</p>
+              <p class="text-sm text-slate-600">Drop the real image into assets/styles/style-03.jpg</p>
             </div>
           </article>
           <article class="style-card">
-            <img src="/assets/styles/style-04.jpg" data-base="1" alt="Style 04 placeholder" class="w-full h-32 object-cover rounded-md border border-slate-200 bg-slate-100" />
+            <img src="assets/styles/style-04.jpg" data-base="1" alt="Style 04 placeholder" class="w-full h-32 object-cover rounded-md border border-slate-200 bg-slate-100" />
             <div class="mt-3">
               <p class="font-semibold text-slate-900">Style 04</p>
-              <p class="text-sm text-slate-600">Drop the real image into /assets/styles/style-04.jpg</p>
+              <p class="text-sm text-slate-600">Drop the real image into assets/styles/style-04.jpg</p>
             </div>
           </article>
           <article class="style-card">
-            <img src="/assets/styles/style-05.jpg" data-base="1" alt="Style 05 placeholder" class="w-full h-32 object-cover rounded-md border border-slate-200 bg-slate-100" />
+            <img src="assets/styles/style-05.jpg" data-base="1" alt="Style 05 placeholder" class="w-full h-32 object-cover rounded-md border border-slate-200 bg-slate-100" />
             <div class="mt-3">
               <p class="font-semibold text-slate-900">Style 05</p>
-              <p class="text-sm text-slate-600">Drop the real image into /assets/styles/style-05.jpg</p>
+              <p class="text-sm text-slate-600">Drop the real image into assets/styles/style-05.jpg</p>
             </div>
           </article>
           <article class="style-card">
-            <img src="/assets/styles/style-06.jpg" data-base="1" alt="Style 06 placeholder" class="w-full h-32 object-cover rounded-md border border-slate-200 bg-slate-100" />
+            <img src="assets/styles/style-06.jpg" data-base="1" alt="Style 06 placeholder" class="w-full h-32 object-cover rounded-md border border-slate-200 bg-slate-100" />
             <div class="mt-3">
               <p class="font-semibold text-slate-900">Style 06</p>
-              <p class="text-sm text-slate-600">Drop the real image into /assets/styles/style-06.jpg</p>
+              <p class="text-sm text-slate-600">Drop the real image into assets/styles/style-06.jpg</p>
             </div>
           </article>
           <article class="style-card">
-            <img src="/assets/styles/style-07.jpg" data-base="1" alt="Style 07 placeholder" class="w-full h-32 object-cover rounded-md border border-slate-200 bg-slate-100" />
+            <img src="assets/styles/style-07.jpg" data-base="1" alt="Style 07 placeholder" class="w-full h-32 object-cover rounded-md border border-slate-200 bg-slate-100" />
             <div class="mt-3">
               <p class="font-semibold text-slate-900">Style 07</p>
-              <p class="text-sm text-slate-600">Drop the real image into /assets/styles/style-07.jpg</p>
+              <p class="text-sm text-slate-600">Drop the real image into assets/styles/style-07.jpg</p>
             </div>
           </article>
           <article class="style-card">
-            <img src="/assets/styles/style-08.jpg" data-base="1" alt="Style 08 placeholder" class="w-full h-32 object-cover rounded-md border border-slate-200 bg-slate-100" />
+            <img src="assets/styles/style-08.jpg" data-base="1" alt="Style 08 placeholder" class="w-full h-32 object-cover rounded-md border border-slate-200 bg-slate-100" />
             <div class="mt-3">
               <p class="font-semibold text-slate-900">Style 08</p>
-              <p class="text-sm text-slate-600">Drop the real image into /assets/styles/style-08.jpg</p>
+              <p class="text-sm text-slate-600">Drop the real image into assets/styles/style-08.jpg</p>
             </div>
           </article>
           <article class="style-card">
-            <img src="/assets/styles/style-09.jpg" data-base="1" alt="Style 09 placeholder" class="w-full h-32 object-cover rounded-md border border-slate-200 bg-slate-100" />
+            <img src="assets/styles/style-09.jpg" data-base="1" alt="Style 09 placeholder" class="w-full h-32 object-cover rounded-md border border-slate-200 bg-slate-100" />
             <div class="mt-3">
               <p class="font-semibold text-slate-900">Style 09</p>
-              <p class="text-sm text-slate-600">Drop the real image into /assets/styles/style-09.jpg</p>
+              <p class="text-sm text-slate-600">Drop the real image into assets/styles/style-09.jpg</p>
             </div>
           </article>
           <article class="style-card">
-            <img src="/assets/styles/style-10.jpg" data-base="1" alt="Style 10 placeholder" class="w-full h-32 object-cover rounded-md border border-slate-200 bg-slate-100" />
+            <img src="assets/styles/style-10.jpg" data-base="1" alt="Style 10 placeholder" class="w-full h-32 object-cover rounded-md border border-slate-200 bg-slate-100" />
             <div class="mt-3">
               <p class="font-semibold text-slate-900">Style 10</p>
-              <p class="text-sm text-slate-600">Drop the real image into /assets/styles/style-10.jpg</p>
+              <p class="text-sm text-slate-600">Drop the real image into assets/styles/style-10.jpg</p>
             </div>
           </article>
         </div>
@@ -192,13 +203,13 @@
         <div class="grid md:grid-cols-3 gap-4">
           <article class="section-card p-5">
             <h3 class="font-semibold text-slate-900">Infographics</h3>
-            <p class="text-sm text-slate-600">Place images in <code>/assets/img/</code> and update references.</p>
+            <p class="text-sm text-slate-600">Place images in <code>assets/img/</code> and update references.</p>
             <div class="mt-3 p-3 rounded-lg bg-slate-100 border border-dashed border-slate-300 text-sm text-slate-600">Placeholder image slot.</div>
           </article>
           <article class="section-card p-5">
             <h3 class="font-semibold text-slate-900">Slide deck (PDF)</h3>
-            <p class="text-sm text-slate-600">Drop your deck in <code>/assets/docs/</code>.</p>
-            <a href="/assets/docs/LIP_Pilot_Snapshot.pdf" data-base="1" class="btn-secondary inline-flex mt-3 text-xs">Sample link</a>
+            <p class="text-sm text-slate-600">Drop your deck in <code>assets/docs/</code>.</p>
+            <a href="assets/docs/LIP_Pilot_Snapshot.pdf" data-base="1" class="btn-secondary inline-flex mt-3 text-xs">Sample link</a>
           </article>
           <article class="section-card p-5">
             <h3 class="font-semibold text-slate-900">Video overview</h3>
@@ -214,9 +225,9 @@
     <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
       <p class="text-sm">© <span id="year"></span> Lesson Intelligence Packs (LIP)</p>
       <div class="flex gap-4 text-sm font-semibold">
-        <a href="/" data-base="1" class="hover:text-violet-600">Home</a>
-        <a href="/index.html#contact" data-base="1" class="hover:text-violet-600">Contact</a>
-        <a href="/index.html#contact" data-base="1" class="hover:text-violet-600">Privacy note</a>
+        <a href="./" data-base="1" class="hover:text-violet-600">Home</a>
+        <a href="index.html#contact" data-base="1" class="hover:text-violet-600">Contact</a>
+        <a href="index.html#contact" data-base="1" class="hover:text-violet-600">Privacy note</a>
       </div>
     </div>
   </footer>
@@ -224,6 +235,6 @@
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
-  <script src="/assets/js/main.js" data-base="1"></script>
+  <script src="assets/js/main.js" data-base="1"></script>
 </body>
 </html>
