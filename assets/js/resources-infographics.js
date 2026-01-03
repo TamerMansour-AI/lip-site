@@ -1,21 +1,25 @@
 (function () {
-  const BASE = location.pathname.startsWith('/lip-site/') ? '/lip-site/' : '/';
+  const BASE = getBaseHref();
 
+  // Upload these PNGs to assets/infographics/ using the exact filenames below.
   const ITEMS = [
     {
       file: 'lip-infographic-01-what-is-lip.png',
-      title: 'Pilot Pack (Cartoon)',
-      description: 'High-level cartoon treatment for the pilot kit explainer.',
+      title: 'What is a Lesson Intelligence Pack (LIP)?',
+      description: 'A quick visual overview of the pilot pack and the 3-step flow.',
+      aspect: '16/9',
     },
     {
       file: 'lip-infographic-02-whats-inside-lip.png',
-      title: 'LIP Quadrants (Neon)',
-      description: 'Four-quadrant neon style to spotlight learning modes and use cases.',
+      title: 'What’s inside a LIP (Quadrants)?',
+      description: 'A four-quadrant breakdown of pack components and usage.',
+      aspect: '3/4',
     },
     {
-      file: 'lip-infographic-03-animated-explainers-pilot.png',
-      title: 'Animated Explainers at a Glance',
-      description: 'Snapshot of the animated explainer workflow and checkpoints.',
+      file: 'lip-infographic-03-animated-explainers-at-a-glance.png',
+      title: 'Animated Explainers (Pilot) — At a Glance',
+      description: 'Snapshot of the explainer workflow, formats, and checkpoints.',
+      aspect: '16/9',
     },
   ];
 
@@ -27,17 +31,24 @@
     const article = document.createElement('article');
     article.className = 'section-card infographic-card';
 
-    const thumb = document.createElement('button');
-    thumb.type = 'button';
-    thumb.className = 'infographic-thumb thumb-button';
-    thumb.setAttribute('aria-label', `Open ${item.title}`);
-    thumb.addEventListener('click', () => openModal(fullSrc, item.title));
+    const thumbLink = document.createElement('a');
+    thumbLink.href = fullSrc;
+    thumbLink.target = '_blank';
+    thumbLink.rel = 'noopener';
+    thumbLink.className = 'infographic-thumb-link';
+    thumbLink.setAttribute('aria-label', `Open ${item.title} in a new tab`);
+
+    const thumb = document.createElement('div');
+    thumb.className = 'infographic-thumb';
+    thumb.dataset.aspect = item.aspect || '16/9';
 
     const img = document.createElement('img');
     img.src = fullSrc;
     img.alt = item.title;
     img.loading = 'lazy';
+    img.addEventListener('error', () => renderPlaceholder(thumb, item.title));
     thumb.appendChild(img);
+    thumbLink.appendChild(thumb);
 
     const textWrap = document.createElement('div');
     textWrap.className = 'space-y-2';
@@ -59,80 +70,44 @@
     badge.className = 'badge';
     badge.textContent = 'PNG';
 
-    const openLink = document.createElement('button');
-    openLink.type = 'button';
+    const openLink = document.createElement('a');
+    openLink.href = fullSrc;
+    openLink.target = '_blank';
+    openLink.rel = 'noopener';
     openLink.className = 'btn-primary text-xs';
     openLink.textContent = 'Open';
-    openLink.addEventListener('click', () => openModal(fullSrc, item.title));
 
     footer.append(badge, openLink);
 
-    article.append(thumb, textWrap, footer);
+    article.append(thumbLink, textWrap, footer);
     return article;
   }
 
-  function ensureModal() {
-    let modal = document.getElementById('infographic-modal');
-    if (modal) return modal;
-
-    modal = document.createElement('div');
-    modal.id = 'infographic-modal';
-    modal.className = 'infographic-modal hidden';
-    modal.setAttribute('role', 'dialog');
-    modal.setAttribute('aria-modal', 'true');
-    modal.setAttribute('aria-label', 'Infographic preview');
-
-    const overlay = document.createElement('div');
-    overlay.className = 'infographic-modal__overlay';
-
-    const dialog = document.createElement('div');
-    dialog.className = 'infographic-modal__dialog';
-
-    const closeBtn = document.createElement('button');
-    closeBtn.type = 'button';
-    closeBtn.className = 'infographic-modal__close';
-    closeBtn.setAttribute('aria-label', 'Close preview');
-    closeBtn.innerHTML = '&times;';
-
-    const image = document.createElement('img');
-    image.alt = '';
-    image.loading = 'lazy';
-    image.className = 'infographic-modal__image';
-
-    const title = document.createElement('p');
-    title.className = 'infographic-modal__title';
-
-    dialog.append(closeBtn, image, title);
-    modal.append(overlay, dialog);
-    document.body.appendChild(modal);
-
-    const closeModal = () => {
-      modal.classList.add('hidden');
-      document.body.classList.remove('modal-open');
-    };
-
-    overlay.addEventListener('click', closeModal);
-    closeBtn.addEventListener('click', closeModal);
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
-        closeModal();
-      }
-    });
-
-    modal.closeModal = closeModal;
-    modal.imageEl = image;
-    modal.titleEl = title;
-    return modal;
+  function getBaseHref() {
+    const baseEl = document.querySelector('base');
+    const href = baseEl?.getAttribute('href') || (location.pathname.startsWith('/lip-site/') ? '/lip-site/' : '/');
+    return href.endsWith('/') ? href : `${href}/`;
   }
 
-  function openModal(src, title) {
-    const modal = ensureModal();
-    modal.imageEl.src = src;
-    modal.imageEl.alt = title;
-    modal.titleEl.textContent = title;
-    modal.classList.remove('hidden');
-    document.body.classList.add('modal-open');
+  function renderPlaceholder(container, title) {
+    container.classList.add('is-missing');
+    container.innerHTML = '';
+
+    const placeholder = document.createElement('div');
+    placeholder.className = 'infographic-thumb__placeholder';
+    placeholder.setAttribute('role', 'img');
+    placeholder.setAttribute('aria-label', `${title} missing file`);
+
+    placeholder.innerHTML = `
+      <svg aria-hidden="true" focusable="false" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="3" width="18" height="18" rx="2"></rect>
+        <path d="M3 16l5-5 4 4 5-5 4 4"></path>
+        <path d="M3 7h4"></path>
+      </svg>
+      <span>Missing file</span>
+    `;
+
+    container.appendChild(placeholder);
   }
 
   ITEMS.forEach((item) => {
