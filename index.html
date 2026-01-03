@@ -1,25 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script>
+    (function () {
+      var segments = window.location.pathname.split('/').filter(Boolean);
+      var basePath = '/';
+      if (window.location.hostname.endsWith('github.io')) {
+        var first = segments[0] || '';
+        basePath = first ? '/' + first + '/' : '/';
+      }
+      document.write('<base href="' + basePath + '">');
+    })();
+  </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Lesson Intelligence Packs deliver source-bound animated explainers and structured outputs for schools." />
   <meta name="base-path" content="" />
-  <link rel="canonical" href="/" data-base="1" />
+  <link rel="canonical" href="./" data-base="1" />
   <meta property="og:title" content="Lesson Intelligence Packs (LIP)" />
   <meta property="og:description" content="Stakeholder-ready learning media—starting with Animated Explainers (Pilot)." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="/" data-base="1" />
+  <meta property="og:url" content="./" data-base="1" />
   <title>Lesson Intelligence Packs (LIP)</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.4/dist/tailwind.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/css/styles.css" data-base="1">
+  <link rel="stylesheet" href="assets/css/styles.css" data-base="1">
   <!-- Analytics placeholder: insert analytics snippet here -->
 </head>
 <body class="antialiased text-slate-900">
   <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-3 focus:left-3 bg-white px-4 py-2 rounded-md shadow">Skip to content</a>
   <header class="sticky top-0 z-30 border-b border-slate-200 nav-blur">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
-      <a href="/" data-base="1" class="text-xl font-extrabold text-slate-900 tracking-tight" aria-label="Lesson Intelligence Packs home">LIP</a>
+      <a href="./" data-base="1" class="text-xl font-extrabold text-slate-900 tracking-tight" aria-label="Lesson Intelligence Packs home">LIP</a>
       <button id="mobile-toggle" class="sm:hidden inline-flex items-center justify-center p-2 rounded-md border border-slate-200" aria-expanded="false" aria-controls="nav-menu">
         <span class="sr-only">Toggle navigation</span>
         <svg class="h-5 w-5 text-slate-700" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" /></svg>
@@ -30,7 +41,7 @@
         <a href="#styles" class="hover:text-violet-600">Styles</a>
         <a href="#workflow" class="hover:text-violet-600">Workflow</a>
         <a href="#faq" class="hover:text-violet-600">FAQ</a>
-        <a href="/resources/" data-base="1" class="hover:text-violet-600">Resources</a>
+        <a href="resources/" data-base="1" class="hover:text-violet-600">Resources</a>
         <a href="#contact" class="hover:text-violet-600">Contact</a>
       </nav>
     </div>
@@ -45,7 +56,7 @@
           <p class="text-lg text-slate-100">Stakeholder-ready learning media—starting with Animated Explainers (Pilot).</p>
           <div class="flex flex-col sm:flex-row gap-3">
             <a href="#contact" class="btn-primary inline-flex items-center justify-center" aria-label="Request the pilot">Request the Pilot</a>
-            <a href="/resources/" data-base="1" class="btn-secondary inline-flex items-center justify-center" aria-label="View deliverables">View Deliverables</a>
+            <a href="resources/" data-base="1" class="btn-secondary inline-flex items-center justify-center" aria-label="View deliverables">View Deliverables</a>
           </div>
           <p class="text-sm text-slate-200">Source-bound. Uses only school-provided materials.</p>
         </div>
@@ -126,7 +137,7 @@
             <h2 class="section-title">Same learning objective, different visual language.</h2>
             <p class="text-slate-600">Choose from structured options to match culture, age, and subject.</p>
           </div>
-          <a href="/resources/#styles" data-base="1" class="link-soft">See examples in Resources →</a>
+          <a href="resources/#styles" data-base="1" class="link-soft">See examples in Resources →</a>
         </div>
         <div class="card-grid">
           <div class="style-card">
@@ -294,7 +305,7 @@
     <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
       <p class="text-sm">© <span id="year"></span> Lesson Intelligence Packs (LIP)</p>
       <div class="flex gap-4 text-sm font-semibold">
-        <a href="/resources/" data-base="1" class="hover:text-violet-600">Resources</a>
+        <a href="resources/" data-base="1" class="hover:text-violet-600">Resources</a>
         <a href="#contact" class="hover:text-violet-600">Contact</a>
         <a href="#contact" class="hover:text-violet-600">Privacy note</a>
       </div>
@@ -304,6 +315,6 @@
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
-  <script src="/assets/js/main.js" data-base="1"></script>
+  <script src="assets/js/main.js" data-base="1"></script>
 </body>
 </html>
