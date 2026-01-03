@@ -10,12 +10,12 @@
     {
       file: 'lip-infographic-02-whats-inside-lip.png',
       title: 'What’s inside a Lesson Intelligence Pack (LIP)?',
-      description: 'Four-quadrant view of LIP outputs and classroom-ready assets.',
+      description: 'Four-quadrant breakdown of outputs and classroom-ready assets.',
     },
     {
-      file: 'lip-infographic-03-animated-explainers-pilot.png',
+      file: 'lip-infographic-03-animated-explainers-pilot-at-a-glance.png',
       title: 'Animated Explainers (Pilot) — At a Glance',
-      description: 'Snapshot of the explainer workflow, formats, and checkpoints.',
+      description: 'Snapshot of workflow, formats, and review checkpoints.',
     },
   ];
 

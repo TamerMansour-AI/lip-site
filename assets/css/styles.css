@@ -199,8 +199,8 @@ textarea:focus-visible {
 
 .infographic-thumb {
   width: 100%;
-  height: clamp(220px, 30vw, 260px);
-  min-height: 220px;
+  height: clamp(200px, 30vw, 260px);
+  min-height: 200px;
   border-radius: 0.9rem;
   overflow: hidden;
   background: linear-gradient(135deg, rgba(148, 163, 184, 0.08), rgba(148, 163, 184, 0.18));
@@ -220,6 +220,14 @@ textarea:focus-visible {
   display: block;
   border-radius: 0.6rem;
   background: #f8fafc;
+}
+
+@media (max-width: 639px) {
+  .infographic-thumb {
+    height: clamp(180px, 55vw, 220px);
+    min-height: 180px;
+    padding: 0.6rem;
+  }
 }
 
 .infographic-thumb-link:hover,
