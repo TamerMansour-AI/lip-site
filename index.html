@@ -30,7 +30,7 @@
   <a href="#main" class="skip-link">Skip to content</a>
   <div id="top"></div>
   <header class="site-header sticky top-0 z-40">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-3">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-3 header-inner">
       <div class="nav-shell flex items-center gap-4 px-3 py-2">
         <div class="flex items-center gap-3 flex-1">
           <a href="#top" class="brand-link" aria-label="Back to top of page">
@@ -55,7 +55,7 @@
           <svg class="h-5 w-5 text-slate-800" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" /></svg>
         </button>
       </div>
-      <div id="mobile-panel" class="mobile-panel mt-2 p-3 grid gap-2 sm:hidden hidden" aria-label="Mobile navigation">
+      <div id="mobile-panel" class="mobile-panel p-3 grid gap-2 sm:hidden hidden" aria-label="Mobile navigation">
         <a href="#problem" class="w-full inline-flex items-center justify-between px-3 py-2 rounded-lg border border-slate-200 font-semibold text-slate-800 bg-white" data-nav-link="problem">Overview<span aria-hidden="true">↘</span></a>
         <a href="#included" class="w-full inline-flex items-center justify-between px-3 py-2 rounded-lg border border-slate-200 font-semibold text-slate-800 bg-white" data-nav-link="included">Pilot<span aria-hidden="true">↘</span></a>
         <a href="#styles" class="w-full inline-flex items-center justify-between px-3 py-2 rounded-lg border border-slate-200 font-semibold text-slate-800 bg-white" data-nav-link="styles">Styles<span aria-hidden="true">↘</span></a>
@@ -66,6 +66,7 @@
       </div>
     </div>
   </header>
+  <div id="mobile-backdrop" class="mobile-backdrop hidden" aria-hidden="true"></div>
 
   <main id="main">
     <section class="hero-gradient text-white pt-20 pb-16 sm:pb-20">
