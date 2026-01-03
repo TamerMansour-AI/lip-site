@@ -205,6 +205,86 @@ textarea:focus-visible {
   display: block;
 }
 
+.infographic-thumb.thumb-button {
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+.infographic-thumb.thumb-button:hover,
+.infographic-thumb.thumb-button:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(17, 24, 39, 0.12);
+}
+
+.infographic-modal {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 1.5rem;
+  z-index: 100;
+}
+
+.infographic-modal.hidden {
+  display: none;
+}
+
+.infographic-modal__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(4px);
+}
+
+.infographic-modal__dialog {
+  position: relative;
+  z-index: 1;
+  max-width: min(1100px, 90vw);
+  max-height: 90vh;
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 25px 60px rgba(15, 23, 42, 0.35);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
+.infographic-modal__close {
+  position: absolute;
+  top: 0.35rem;
+  right: 0.35rem;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-size: 1.5rem;
+  line-height: 1;
+  border-radius: 999px;
+  padding: 0.2rem 0.65rem;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.15);
+}
+
+.infographic-modal__image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #0f172a;
+}
+
+.infographic-modal__title {
+  padding: 0.75rem 1rem 1rem;
+  font-weight: 600;
+  color: var(--text);
+  text-align: center;
+}
+
+body.modal-open {
+  overflow: hidden;
+}
+
 .bg-surface {
   background: var(--surface);
 }

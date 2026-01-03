@@ -88,47 +88,7 @@
           <p class="text-sm text-slate-600">Ready for upload: drop PNGs into <code>assets/infographics/</code>.</p>
         </div>
         <p class="text-sm text-slate-600">These are placeholders. Replace anytime—no code changes needed.</p>
-        <div class="infographic-grid">
-          <article class="section-card infographic-card">
-            <div class="infographic-thumb" aria-hidden="true">
-              <img src="assets/infographics/lip-infographic-pilot-pack-cartoon.png" data-base="1" alt="Pilot pack cartoon infographic placeholder" />
-            </div>
-            <div class="space-y-2">
-              <h3 class="font-semibold text-slate-900">Pilot Pack (Cartoon)</h3>
-              <p class="text-sm text-slate-600">High-level cartoon treatment for the pilot kit explainer.</p>
-            </div>
-            <div class="flex justify-between items-center">
-              <span class="badge">PNG</span>
-              <a href="assets/infographics/lip-infographic-pilot-pack-cartoon.png" data-base="1" class="btn-primary text-xs" target="_blank" rel="noopener">Open</a>
-            </div>
-          </article>
-          <article class="section-card infographic-card">
-            <div class="infographic-thumb" aria-hidden="true">
-              <img src="assets/infographics/lip-infographic-lip-quadrants-neon.png" data-base="1" alt="Neon quadrants infographic placeholder" />
-            </div>
-            <div class="space-y-2">
-              <h3 class="font-semibold text-slate-900">LIP Quadrants (Neon)</h3>
-              <p class="text-sm text-slate-600">Four-quadrant neon style to spotlight learning modes and use cases.</p>
-            </div>
-            <div class="flex justify-between items-center">
-              <span class="badge">PNG</span>
-              <a href="assets/infographics/lip-infographic-lip-quadrants-neon.png" data-base="1" class="btn-primary text-xs" target="_blank" rel="noopener">Open</a>
-            </div>
-          </article>
-          <article class="section-card infographic-card">
-            <div class="infographic-thumb" aria-hidden="true">
-              <img src="assets/infographics/lip-infographic-animated-explainers-glance.png" data-base="1" alt="Animated explainers overview placeholder" />
-            </div>
-            <div class="space-y-2">
-              <h3 class="font-semibold text-slate-900">Animated Explainers at a Glance</h3>
-              <p class="text-sm text-slate-600">Snapshot of the animated explainer workflow and checkpoints.</p>
-            </div>
-            <div class="flex justify-between items-center">
-              <span class="badge">PNG</span>
-              <a href="assets/infographics/lip-infographic-animated-explainers-glance.png" data-base="1" class="btn-primary text-xs" target="_blank" rel="noopener">Open</a>
-            </div>
-          </article>
-        </div>
+        <div id="infographics-grid" class="infographic-grid" aria-live="polite"></div>
       </div>
     </section>
 
@@ -322,5 +282,6 @@
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
   <script src="assets/js/main.js" data-base="1"></script>
+  <script src="assets/js/resources-infographics.js" data-base="1"></script>
 </body>
 </html>
