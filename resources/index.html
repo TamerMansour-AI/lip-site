@@ -28,18 +28,25 @@
 </head>
 <body class="antialiased text-slate-900">
   <a href="#main" class="skip-link">Skip to content</a>
-  <header class="sticky top-0 z-30">
+  <div id="top"></div>
+  <header class="site-header sticky top-0 z-40">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 py-3">
       <div class="nav-shell flex items-center gap-4 px-3 py-2">
         <div class="flex items-center gap-3 flex-1">
-          <a href="./" data-base="1" class="text-xl font-extrabold text-slate-900 tracking-tight" aria-label="Lesson Intelligence Packs home">LIP</a>
+          <a href="#top" class="brand-link" aria-label="Back to top of page">
+            <span class="brand-mark">LIP</span>
+            <span class="brand-text">
+              <span class="brand-name hidden sm:inline">Lesson Intelligence Packs</span>
+              <span class="brand-tag">Resource hub</span>
+            </span>
+          </a>
         </div>
         <nav id="nav-menu" class="hidden sm:flex items-center gap-1 text-sm font-semibold text-slate-700">
           <a href="./" data-base="1" class="nav-link">Home</a>
           <a href="resources/" data-base="1" class="nav-link">Resources</a>
           <a href="index.html#contact" data-base="1" class="nav-link">Contact</a>
         </nav>
-        <button id="mobile-toggle" class="sm:hidden inline-flex items-center justify-center p-2 nav-toggle" aria-expanded="false" aria-controls="mobile-panel">
+        <button id="mobile-toggle" class="sm:hidden inline-flex items-center justify-center nav-toggle" aria-expanded="false" aria-controls="mobile-panel" aria-label="Toggle navigation" type="button">
           <span class="sr-only">Toggle navigation</span>
           <svg class="h-5 w-5 text-slate-800" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" /></svg>
         </button>

@@ -47,3 +47,7 @@ Premium, mobile-first marketing site for Lesson Intelligence Packs (LIP). Built 
 
 ## Content updates
 - All copy blocks live in `CONTENT.md` for quick iteration. Update the HTML if you change text here.
+
+## Changelog
+- Refined the sticky navigation (brand link, hamburger, active states) and tightened hero readability and spacing.
+- Added tinted section backgrounds, icon sizing guards, and a redesigned contact card with clearer next steps.
