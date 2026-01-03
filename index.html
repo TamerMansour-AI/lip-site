@@ -28,11 +28,18 @@
 </head>
 <body class="antialiased text-slate-900">
   <a href="#main" class="skip-link">Skip to content</a>
-  <header class="sticky top-0 z-30">
+  <div id="top"></div>
+  <header class="site-header sticky top-0 z-40">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 py-3">
       <div class="nav-shell flex items-center gap-4 px-3 py-2">
         <div class="flex items-center gap-3 flex-1">
-          <a href="./" data-base="1" class="text-xl font-extrabold text-slate-900 tracking-tight" aria-label="Lesson Intelligence Packs home">LIP</a>
+          <a href="#top" class="brand-link" aria-label="Back to top of page">
+            <span class="brand-mark">LIP</span>
+            <span class="brand-text">
+              <span class="brand-name hidden sm:inline">Lesson Intelligence Packs</span>
+              <span class="brand-tag">Source-bound explainers</span>
+            </span>
+          </a>
         </div>
         <nav id="nav-menu" class="hidden sm:flex items-center gap-1 text-sm font-semibold text-slate-700">
           <a href="#problem" class="nav-link" data-nav-link="problem">Overview</a>
@@ -43,7 +50,7 @@
           <a href="resources/" data-base="1" class="nav-link">Resources</a>
           <a href="#contact" class="nav-link" data-nav-link="contact">Contact</a>
         </nav>
-        <button id="mobile-toggle" class="sm:hidden inline-flex items-center justify-center p-2 nav-toggle" aria-expanded="false" aria-controls="mobile-panel">
+        <button id="mobile-toggle" class="sm:hidden inline-flex items-center justify-center nav-toggle" aria-expanded="false" aria-controls="mobile-panel" aria-label="Toggle navigation" type="button">
           <span class="sr-only">Toggle navigation</span>
           <svg class="h-5 w-5 text-slate-800" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" /></svg>
         </button>
@@ -63,11 +70,11 @@
   <main id="main">
     <section class="hero-gradient text-white pt-20 pb-16 sm:pb-20">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
-        <div class="max-w-3xl space-y-6">
+        <div class="max-w-4xl hero-card space-y-6">
           <span class="eyebrow">Lesson Intelligence Packs · Pilot-ready</span>
           <h1 class="text-4xl sm:text-5xl md:text-6xl font-black leading-tight text-slate-50 drop-shadow-sm">Stakeholder-ready explainers that stay source-bound.</h1>
-          <p class="text-lg text-slate-100 max-w-2xl">Animated explainers and structured outputs built only from the materials schools provide—purposeful visuals with captions and reviewable checkpoints.</p>
-          <div class="flex flex-col sm:flex-row gap-3">
+          <p class="text-lg text-slate-100 max-w-3xl">Animated explainers and structured outputs built only from the materials schools provide—purposeful visuals with captions and reviewable checkpoints.</p>
+          <div class="hero-actions">
             <a href="#contact" class="btn-primary inline-flex items-center justify-center" aria-label="Request the pilot">Request the Pilot</a>
             <a href="resources/" data-base="1" class="btn-ghost inline-flex items-center justify-center" aria-label="View deliverables">View Deliverables</a>
           </div>
@@ -79,21 +86,21 @@
     <section class="bg-white py-6 border-b border-slate-200">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 grid gap-3 sm:grid-cols-3">
         <div class="trust-card flex items-start gap-3">
-          <svg class="w-5 h-5 text-violet-600 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12l4 4L19 6" /></svg>
+          <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12l4 4L19 6" /></svg></span>
           <div>
             <p class="text-sm font-semibold text-slate-900">Source-bound</p>
             <p class="text-xs text-slate-600">Uses only school-provided materials.</p>
           </div>
         </div>
         <div class="trust-card flex items-start gap-3">
-          <svg class="w-5 h-5 text-violet-600 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 5v14M5 12h14" /></svg>
+          <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 5v14M5 12h14" /></svg></span>
           <div>
             <p class="text-sm font-semibold text-slate-900">Pilot-first</p>
             <p class="text-xs text-slate-600">Low-risk proof of workflow.</p>
           </div>
         </div>
         <div class="trust-card flex items-start gap-3">
-          <svg class="w-5 h-5 text-violet-600 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4 7l4-2 4 2 4-2 4 2v10l-4 2-4-2-4 2-4-2V7z" /></svg>
+          <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4 7l4-2 4 2 4-2 4 2v10l-4 2-4-2-4 2-4-2V7z" /></svg></span>
           <div>
             <p class="text-sm font-semibold text-slate-900">Style-flexible</p>
             <p class="text-xs text-slate-600">Same objective, different visual language.</p>
@@ -102,8 +109,8 @@
       </div>
     </section>
 
-    <section id="problem" class="py-16 bg-surface">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 grid lg:grid-cols-2 gap-10 items-start">
+    <section id="problem" class="section-wrap section-spacer bg-surface">
+      <div class="section-content max-w-6xl mx-auto px-4 sm:px-6 grid lg:grid-cols-2 gap-10 items-start">
         <div class="space-y-4">
           <span class="section-divider">The Problem</span>
           <h2 class="section-title">Why abstract science concepts fall flat.</h2>
@@ -119,8 +126,8 @@
       </div>
     </section>
 
-    <section id="solution" class="py-16">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 grid lg:grid-cols-2 gap-10 items-start">
+    <section id="solution" class="section-wrap section-spacer">
+      <div class="section-content max-w-6xl mx-auto px-4 sm:px-6 grid lg:grid-cols-2 gap-10 items-start">
         <div class="section-card p-6">
           <p class="text-sm uppercase tracking-wide text-slate-500 font-semibold">The Solution</p>
           <h2 class="section-title mb-4">Purpose-built explainers with structured outputs.</h2>
@@ -147,8 +154,8 @@
       </div>
     </section>
 
-    <section id="included" class="py-16 bg-surface">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 space-y-6">
+    <section id="included" class="section-wrap section-spacer bg-surface">
+      <div class="section-content max-w-6xl mx-auto px-4 sm:px-6 space-y-6">
         <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
           <div class="space-y-2">
             <span class="section-divider">What’s Included (Pilot)</span>
@@ -168,8 +175,8 @@
       </div>
     </section>
 
-    <section id="styles" class="py-16">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 space-y-6">
+    <section id="styles" class="section-wrap section-spacer alt">
+      <div class="section-content max-w-6xl mx-auto px-4 sm:px-6 space-y-6">
         <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
           <div class="space-y-2">
             <span class="section-divider">Style Flexibility</span>
@@ -223,8 +230,8 @@
       </div>
     </section>
 
-    <section id="workflow" class="py-16 bg-surface">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 space-y-6">
+    <section id="workflow" class="section-wrap section-spacer bg-surface">
+      <div class="section-content max-w-6xl mx-auto px-4 sm:px-6 space-y-6">
         <span class="section-divider">Workflow</span>
         <h2 class="section-title">Built to stay source-bound.</h2>
         <div class="grid lg:grid-cols-4 gap-4">
@@ -248,8 +255,8 @@
       </div>
     </section>
 
-    <section id="pilot" class="py-16">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 space-y-6">
+    <section id="pilot" class="section-wrap section-spacer">
+      <div class="section-content max-w-6xl mx-auto px-4 sm:px-6 space-y-6">
         <span class="section-divider">Pilot Process</span>
         <h2 class="section-title">Three-step pilot, low overhead.</h2>
         <div class="grid md:grid-cols-3 gap-4">
@@ -269,8 +276,8 @@
       </div>
     </section>
 
-    <section id="faq" class="py-16 bg-surface">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 space-y-6">
+    <section id="faq" class="section-wrap section-spacer bg-surface">
+      <div class="section-content max-w-6xl mx-auto px-4 sm:px-6 space-y-6">
         <span class="section-divider">FAQ</span>
         <h2 class="section-title">Quick answers for decision-makers.</h2>
         <div class="grid md:grid-cols-2 gap-4">
@@ -298,44 +305,63 @@
       </div>
     </section>
 
-    <section id="contact" class="py-16">
-      <div class="max-w-4xl mx-auto px-4 sm:px-6 section-card p-6">
-        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-4">
-          <div>
-            <p class="text-sm uppercase tracking-wide text-slate-500 font-semibold">Contact</p>
+    <section id="contact" class="section-wrap section-spacer">
+      <div class="section-content max-w-5xl mx-auto px-4 sm:px-6">
+        <div class="contact-card">
+          <div class="space-y-4">
+            <span class="section-divider">Contact</span>
             <h2 class="section-title">Request the pilot or reach out.</h2>
-            <p class="text-slate-600">Email direct: <a class="link-soft" href="mailto:ai.visionary.pioneer@gmail.com">ai.visionary.pioneer@gmail.com</a></p>
+            <p class="text-slate-600 text-base">A short, clear intake keeps us fast: you can email directly or use the form. We stay source-bound and reply with a next-step outline.</p>
+            <div class="flex flex-wrap items-center gap-3">
+              <a href="mailto:ai.visionary.pioneer@gmail.com" class="btn-primary inline-flex items-center justify-center">Email now</a>
+              <a href="mailto:ai.visionary.pioneer@gmail.com" class="link-soft text-sm font-semibold">ai.visionary.pioneer@gmail.com</a>
+            </div>
+            <div class="grid sm:grid-cols-2 gap-3">
+              <div class="section-card p-4 bg-white">
+                <p class="text-sm font-semibold text-slate-900">What happens next</p>
+                <ul class="contact-list mt-2">
+                  <li><span aria-hidden="true">•</span>We respond within 1 business day with a pilot outline.</li>
+                  <li><span aria-hidden="true">•</span>We confirm sources, scope, and checkpoints.</li>
+                  <li><span aria-hidden="true">•</span>You choose styles and timelines; no platform lock-in.</li>
+                </ul>
+              </div>
+              <div class="section-card p-4 bg-surface border-dashed border-2 border-violet-200">
+                <p class="text-sm font-semibold text-slate-900">Optional Formspree</p>
+                <p class="text-sm text-slate-600">Add your Formspree ID in the HTML (commented) if you want inbox forwarding.</p>
+                <p class="subdued-note mt-2">Default: builds a mailto so nothing breaks in locked-down environments.</p>
+              </div>
+            </div>
           </div>
-          <a href="mailto:ai.visionary.pioneer@gmail.com" class="btn-secondary inline-flex items-center justify-center">Email now</a>
+          <form id="contact-form" class="grid md:grid-cols-2 gap-4" aria-label="Contact form">
+            <!-- To enable Formspree, replace FORM_ID and uncomment the form action below. -->
+            <!-- <form action="https://formspree.io/f/FORM_ID" method="POST"> -->
+            <label class="flex flex-col text-sm font-semibold text-slate-700">
+              Name
+              <input type="text" name="name" placeholder="Your name" required />
+            </label>
+            <label class="flex flex-col text-sm font-semibold text-slate-700">
+              Organization
+              <input type="text" name="organization" placeholder="School or district" />
+            </label>
+            <label class="flex flex-col text-sm font-semibold text-slate-700">
+              Role
+              <input type="text" name="role" placeholder="Role" />
+            </label>
+            <label class="flex flex-col text-sm font-semibold text-slate-700">
+              Email
+              <input type="email" name="email" placeholder="name@school.edu" required aria-describedby="email-hint" />
+              <span id="email-hint" class="text-xs text-slate-500">We only use this to respond to your request.</span>
+            </label>
+            <label class="flex flex-col text-sm font-semibold text-slate-700 md:col-span-2">
+              Message
+              <textarea name="message" rows="4" placeholder="Goals, topics, timelines"></textarea>
+            </label>
+            <div class="md:col-span-2 flex flex-wrap items-center gap-3">
+              <button type="submit" class="btn-secondary">Send request</button>
+              <p class="text-sm text-slate-600">We’ll prefill your email so you can keep your own thread.</p>
+            </div>
+          </form>
         </div>
-        <form id="contact-form" class="grid md:grid-cols-2 gap-4" aria-label="Contact form">
-          <!-- To enable Formspree, replace FORM_ID and uncomment the form action below. -->
-          <!-- <form action="https://formspree.io/f/FORM_ID" method="POST"> -->
-          <label class="flex flex-col gap-2 text-sm font-semibold text-slate-700">
-            Name
-            <input type="text" name="name" class="border border-slate-200 px-3 py-2" placeholder="Your name" />
-          </label>
-          <label class="flex flex-col gap-2 text-sm font-semibold text-slate-700">
-            Organization
-            <input type="text" name="organization" class="border border-slate-200 px-3 py-2" placeholder="School or district" />
-          </label>
-          <label class="flex flex-col gap-2 text-sm font-semibold text-slate-700">
-            Role
-            <input type="text" name="role" class="border border-slate-200 px-3 py-2" placeholder="Role" />
-          </label>
-          <label class="flex flex-col gap-2 text-sm font-semibold text-slate-700">
-            Email
-            <input type="email" name="email" class="border border-slate-200 px-3 py-2" placeholder="name@school.edu" required />
-          </label>
-          <label class="flex flex-col gap-2 text-sm font-semibold text-slate-700 md:col-span-2">
-            Message
-            <textarea name="message" rows="4" class="border border-slate-200 px-3 py-2" placeholder="Goals, topics, timelines"></textarea>
-          </label>
-          <div class="md:col-span-2 flex flex-wrap items-center gap-3">
-            <button type="submit" class="btn-primary">Send request</button>
-            <p class="text-sm text-slate-600">The form builds an email to keep your workflow simple.</p>
-          </div>
-        </form>
       </div>
     </section>
   </main>
