@@ -42,18 +42,46 @@
     if (!toggle || !panel) return;
 
     const links = panel.querySelectorAll('a');
+    const backdrop = document.getElementById('mobile-backdrop');
     const closePanel = () => {
       panel.classList.add('hidden');
       toggle.setAttribute('aria-expanded', 'false');
+      backdrop?.classList.add('hidden');
+      document.body.classList.remove('menu-open');
+    };
+    const openPanel = () => {
+      panel.classList.remove('hidden');
+      toggle.setAttribute('aria-expanded', 'true');
+      backdrop?.classList.remove('hidden');
+      document.body.classList.add('menu-open');
     };
 
     toggle.addEventListener('click', () => {
-      const isHidden = panel.classList.toggle('hidden');
-      toggle.setAttribute('aria-expanded', (!isHidden).toString());
+      const isHidden = panel.classList.contains('hidden');
+      if (isHidden) {
+        openPanel();
+      } else {
+        closePanel();
+      }
     });
 
     links.forEach((link) => {
       link.addEventListener('click', () => closePanel());
+    });
+
+    document.addEventListener('click', (event) => {
+      if (panel.classList.contains('hidden')) return;
+      const target = event.target;
+      if (panel.contains(target) || toggle.contains(target)) return;
+      closePanel();
+    });
+
+    backdrop?.addEventListener('click', () => closePanel());
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth >= 640) {
+        closePanel();
+      }
     });
   }
 
