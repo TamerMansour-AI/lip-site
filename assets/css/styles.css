@@ -51,7 +51,7 @@ svg {
 
 main img,
 main svg {
-  max-height: 420px;
+  max-height: 360px;
   object-fit: contain;
 }
 
@@ -66,16 +66,16 @@ textarea:focus-visible {
 .hero-gradient {
   position: relative;
   overflow: hidden;
-  background: linear-gradient(160deg, #0f0a2e, #1e154b 55%, #2d1e63);
+  background: linear-gradient(140deg, #0e082e 0%, #1b1145 50%, #28175c 100%);
 }
 
 .hero-gradient::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 15% 25%, rgba(124, 58, 237, 0.32), transparent 35%),
-    radial-gradient(circle at 80% 15%, rgba(80, 50, 200, 0.4), transparent 40%),
-    linear-gradient(180deg, rgba(11, 12, 30, 0.5), rgba(9, 12, 34, 0.8));
+  background: radial-gradient(circle at 15% 25%, rgba(124, 58, 237, 0.28), transparent 34%),
+    radial-gradient(circle at 78% 18%, rgba(67, 56, 202, 0.35), transparent 40%),
+    linear-gradient(180deg, rgba(9, 10, 28, 0.65), rgba(7, 9, 25, 0.85));
   pointer-events: none;
 }
 
@@ -93,16 +93,30 @@ textarea:focus-visible {
   z-index: 1;
   padding: 1.5rem;
   border-radius: 1rem;
-  background: rgba(11, 16, 33, 0.55);
+  background: rgba(11, 16, 33, 0.7);
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 18px 48px rgba(0, 0, 0, 0.35);
   backdrop-filter: blur(12px);
 }
 
 .hero-card h1,
-.hero-card p,
 .hero-card .eyebrow {
   text-shadow: 0 6px 22px rgba(0, 0, 0, 0.35);
+}
+
+.hero-card h1 {
+  color: #ffffff;
+}
+
+.hero-card p,
+.hero-card li,
+.hero-card .eyebrow {
+  color: #e2e8f0;
+  text-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
+}
+
+.hero-card p:last-of-type {
+  color: #e5e7eb;
 }
 
 .hero-actions {
@@ -289,6 +303,7 @@ label {
 
 .header-inner {
   position: relative;
+  z-index: 1;
 }
 
 .nav-shell {
@@ -306,6 +321,17 @@ label {
   backdrop-filter: blur(16px);
   border-bottom: 1px solid rgba(15, 23, 42, 0.06);
   box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+  z-index: 70;
+}
+
+#nav-menu {
+  display: none;
+}
+
+@media (min-width: 640px) {
+  #nav-menu {
+    display: flex;
+  }
 }
 
 .brand-link {
@@ -404,6 +430,7 @@ label {
   box-shadow: 0 18px 40px rgba(15, 23, 42, 0.18);
   transform-origin: top;
   animation: fadeSlide 160ms ease;
+  z-index: 60;
 }
 
 .mobile-panel a.active {
@@ -415,16 +442,15 @@ label {
 .mobile-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(15, 23, 42, 0.3);
-  backdrop-filter: blur(2px);
-  z-index: 30;
+  background: rgba(15, 23, 42, 0.25);
+  z-index: 50;
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
   transition: opacity 160ms ease, visibility 160ms ease;
 }
 
-body.menu-open .mobile-backdrop {
+.mobile-backdrop.active {
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
@@ -541,6 +567,7 @@ footer {
 .trust-card img,
 .trust-card svg {
   max-height: 72px;
+  max-width: 72px;
   width: auto;
   object-fit: contain;
 }
