@@ -41,26 +41,36 @@
             </span>
           </a>
         </div>
-        <nav id="nav-menu" class="hidden sm:flex items-center gap-1 text-sm font-semibold text-slate-700">
-          <a href="./" data-base="1" class="nav-link">Home</a>
-          <a href="resources/" data-base="1" class="nav-link">Resources</a>
-          <a href="index.html#contact" data-base="1" class="nav-link">Contact</a>
+        <nav id="nav-menu" class="primary-nav" aria-label="Primary navigation">
+          <ul class="nav-list">
+            <li><a href="./#problem" class="nav-link" data-nav-link="problem">Overview</a></li>
+            <li><a href="./#included" class="nav-link" data-nav-link="included">Pilot</a></li>
+            <li><a href="./#styles" class="nav-link" data-nav-link="styles">Styles</a></li>
+            <li><a href="./#workflow" class="nav-link" data-nav-link="workflow">Workflow</a></li>
+            <li><a href="./#faq" class="nav-link" data-nav-link="faq">FAQ</a></li>
+            <li><a href="./resources/" data-base="1" class="nav-link" data-nav-link="resources" aria-current="page">Resources</a></li>
+            <li><a href="./#contact" class="nav-link" data-nav-link="contact">Contact</a></li>
+          </ul>
         </nav>
         <button id="mobile-toggle" class="sm:hidden inline-flex items-center justify-center nav-toggle" aria-expanded="false" aria-controls="mobile-panel" aria-label="Toggle navigation" type="button">
           <span class="sr-only">Toggle navigation</span>
           <svg class="h-5 w-5 text-slate-800" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" /></svg>
         </button>
       </div>
-      <div id="mobile-panel" class="mobile-panel mt-2 p-3 grid gap-2 sm:hidden hidden" aria-label="Mobile navigation">
-        <a href="./" data-base="1" class="w-full inline-flex items-center justify-between px-3 py-2 rounded-lg border border-slate-200 font-semibold text-slate-800 bg-white">Home<span aria-hidden="true">↘</span></a>
-        <a href="resources/" data-base="1" class="w-full inline-flex items-center justify-between px-3 py-2 rounded-lg border border-slate-200 font-semibold text-slate-800 bg-white">Resources<span aria-hidden="true">↘</span></a>
-        <a href="index.html#contact" data-base="1" class="w-full inline-flex items-center justify-between px-3 py-2 rounded-lg border border-slate-200 font-semibold text-slate-800 bg-white">Contact<span aria-hidden="true">↘</span></a>
+      <div id="mobile-panel" class="mobile-panel p-3 grid gap-2 sm:hidden hidden" aria-label="Mobile navigation">
+        <a href="./#problem" class="mobile-nav-link" data-nav-link="problem"><span>Overview</span><span aria-hidden="true">↘</span></a>
+        <a href="./#included" class="mobile-nav-link" data-nav-link="included"><span>Pilot</span><span aria-hidden="true">↘</span></a>
+        <a href="./#styles" class="mobile-nav-link" data-nav-link="styles"><span>Styles</span><span aria-hidden="true">↘</span></a>
+        <a href="./#workflow" class="mobile-nav-link" data-nav-link="workflow"><span>Workflow</span><span aria-hidden="true">↘</span></a>
+        <a href="./#faq" class="mobile-nav-link" data-nav-link="faq"><span>FAQ</span><span aria-hidden="true">↘</span></a>
+        <a href="./resources/" data-base="1" class="mobile-nav-link" data-nav-link="resources"><span>Resources</span><span aria-hidden="true">↘</span></a>
+        <a href="./#contact" class="mobile-nav-link" data-nav-link="contact"><span>Contact</span><span aria-hidden="true">↘</span></a>
       </div>
     </div>
   </header>
 
   <main id="main">
-    <section class="hero-gradient text-white pt-20 pb-14 sm:pb-16">
+    <section id="resources" class="hero-gradient text-white pt-20 pb-14 sm:pb-16">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 relative z-10 space-y-4">
         <span class="eyebrow">Resources hub</span>
         <h1 class="text-4xl sm:text-5xl font-black leading-tight text-slate-50">Resources</h1>
