@@ -43,11 +43,17 @@
 
     const links = panel.querySelectorAll('a');
     const backdrop = document.getElementById('mobile-backdrop');
+    const resetMenu = () => {
+      panel.classList.add('hidden');
+      toggle.setAttribute('aria-expanded', 'false');
+      backdrop?.classList.add('hidden');
+      document.body.classList.remove('menu-open', 'nav-open', 'modal-open');
+    };
     const closePanel = () => {
       panel.classList.add('hidden');
       toggle.setAttribute('aria-expanded', 'false');
       backdrop?.classList.add('hidden');
-      document.body.classList.remove('menu-open');
+      document.body.classList.remove('menu-open', 'nav-open', 'modal-open');
     };
     const openPanel = () => {
       panel.classList.remove('hidden');
@@ -80,6 +86,14 @@
 
     window.addEventListener('resize', () => {
       if (window.innerWidth >= 640) {
+        closePanel();
+      }
+    });
+
+    resetMenu();
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
         closePanel();
       }
     });
