@@ -1,25 +1,21 @@
 (function () {
-  const BASE = getBaseHref();
+  const BASE_PATH = computeBasePath();
 
-  // Upload these PNGs to assets/infographics/ using the exact filenames below.
   const ITEMS = [
     {
       file: 'lip-infographic-01-what-is-lip.png',
       title: 'What is a Lesson Intelligence Pack (LIP)?',
-      description: 'A quick visual overview of the pilot pack and the 3-step flow.',
-      aspect: '16/9',
+      description: 'A visual overview of the pilot pack and the 3-step flow.',
     },
     {
       file: 'lip-infographic-02-whats-inside-lip.png',
-      title: 'What’s inside a LIP (Quadrants)?',
-      description: 'A four-quadrant breakdown of pack components and usage.',
-      aspect: '3/4',
+      title: 'What’s inside a Lesson Intelligence Pack (LIP)?',
+      description: 'Four-quadrant view of LIP outputs and classroom-ready assets.',
     },
     {
-      file: 'lip-infographic-03-animated-explainers-at-a-glance.png',
+      file: 'lip-infographic-03-animated-explainers-pilot.png',
       title: 'Animated Explainers (Pilot) — At a Glance',
       description: 'Snapshot of the explainer workflow, formats, and checkpoints.',
-      aspect: '16/9',
     },
   ];
 
@@ -27,7 +23,7 @@
   if (!grid) return;
 
   function buildCard(item) {
-    const fullSrc = `${BASE}assets/infographics/${item.file}`;
+    const fullSrc = `${BASE_PATH}assets/infographics/${item.file}`;
     const article = document.createElement('article');
     article.className = 'section-card infographic-card';
 
@@ -40,7 +36,6 @@
 
     const thumb = document.createElement('div');
     thumb.className = 'infographic-thumb';
-    thumb.dataset.aspect = item.aspect || '16/9';
 
     const img = document.createElement('img');
     img.src = fullSrc;
@@ -83,10 +78,13 @@
     return article;
   }
 
-  function getBaseHref() {
-    const baseEl = document.querySelector('base');
-    const href = baseEl?.getAttribute('href') || (location.pathname.startsWith('/lip-site/') ? '/lip-site/' : '/');
-    return href.endsWith('/') ? href : `${href}/`;
+  function computeBasePath() {
+    const { hostname, pathname } = window.location;
+    if (hostname.endsWith('github.io')) {
+      const repo = pathname.split('/').filter(Boolean)[0] || '';
+      return repo ? `/${repo}/` : '/';
+    }
+    return '/';
   }
 
   function renderPlaceholder(container, title) {
