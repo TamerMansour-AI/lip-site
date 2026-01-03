@@ -18,6 +18,10 @@ body {
   background: #ffffff;
 }
 
+.hidden {
+  display: none !important;
+}
+
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 120px;
@@ -414,6 +418,16 @@ label {
   background: rgba(15, 23, 42, 0.3);
   backdrop-filter: blur(2px);
   z-index: 30;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 160ms ease, visibility 160ms ease;
+}
+
+body.menu-open .mobile-backdrop {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
 }
 
 footer {
