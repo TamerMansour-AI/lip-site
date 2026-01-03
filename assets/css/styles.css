@@ -1,0 +1,121 @@
+:root {
+  --navy: #0b1021;
+  --navy-700: #11182f;
+  --violet: #7c3aed;
+  --violet-200: #c4b5fd;
+  --text: #0f172a;
+  --muted: #475569;
+  --surface: #f8fafc;
+  --border: #e2e8f0;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--text);
+  background: #ffffff;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid var(--violet);
+  outline-offset: 2px;
+}
+
+.hero-gradient {
+  background: radial-gradient(circle at 20% 20%, rgba(124, 58, 237, 0.2), transparent 35%),
+    radial-gradient(circle at 80% 0%, rgba(12, 10, 40, 0.65), transparent 40%),
+    linear-gradient(135deg, var(--navy), #1f1938);
+}
+
+.section-card {
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  box-shadow: 0 10px 30px rgba(17, 24, 39, 0.06);
+}
+
+.bg-surface {
+  background: var(--surface);
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  background: rgba(124, 58, 237, 0.1);
+  color: #4c1d95;
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+.list-dot {
+  list-style: disc;
+  padding-left: 1.25rem;
+  color: var(--muted);
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.style-card {
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  padding: 1rem;
+  background: var(--surface);
+  transition: transform 150ms ease, box-shadow 150ms ease;
+}
+
+.style-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(15, 23, 42, 0.08);
+}
+
+.section-title {
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  font-weight: 700;
+  color: var(--navy);
+}
+
+.btn-primary {
+  background: linear-gradient(120deg, #6d28d9, #7c3aed);
+  color: #fff;
+  padding: 0.8rem 1.25rem;
+  border-radius: 0.75rem;
+  font-weight: 700;
+  border: 1px solid #6d28d9;
+  box-shadow: 0 8px 20px rgba(124, 58, 237, 0.3);
+}
+
+.btn-secondary {
+  padding: 0.8rem 1.25rem;
+  border-radius: 0.75rem;
+  font-weight: 700;
+  border: 1px solid var(--border);
+  color: var(--navy);
+  background: #ffffff;
+}
+
+.link-soft {
+  color: var(--violet);
+  font-weight: 600;
+}
+
+input, textarea {
+  border-radius: 0.75rem;
+}
+
+.nav-blur {
+  backdrop-filter: blur(16px);
+  background: rgba(255, 255, 255, 0.85);
+}
+
+footer {
+  border-top: 1px solid var(--border);
+}
