@@ -1,6 +1,4 @@
 (function () {
-  const BASE_PATH = computeBasePath();
-
   const ITEMS = [
     {
       file: 'lip-infographic-01-what-is-lip.png',
@@ -23,7 +21,7 @@
   if (!grid) return;
 
   function buildCard(item) {
-    const fullSrc = `${BASE_PATH}assets/infographics/${item.file}`;
+    const fullSrc = `assets/infographics/${item.file}`;
     const article = document.createElement('article');
     article.className = 'section-card infographic-card';
 
@@ -76,15 +74,6 @@
 
     article.append(thumbLink, textWrap, footer);
     return article;
-  }
-
-  function computeBasePath() {
-    const { hostname, pathname } = window.location;
-    if (hostname.endsWith('github.io')) {
-      const repo = pathname.split('/').filter(Boolean)[0] || '';
-      return repo ? `/${repo}/` : '/';
-    }
-    return '/';
   }
 
   function renderPlaceholder(container, title) {
