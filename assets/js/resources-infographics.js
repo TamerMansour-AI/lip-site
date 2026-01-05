@@ -1,4 +1,6 @@
 (function () {
+  const BASE = '/lip-site/assets/infographics/';
+
   const ITEMS = [
     {
       file: 'lip-infographic-01-what-is-lip.png',
@@ -21,7 +23,7 @@
   if (!grid) return;
 
   function buildCard(item) {
-    const fullSrc = `assets/infographics/${item.file}`;
+    const fullSrc = `${BASE}${item.file}`;
     const article = document.createElement('article');
     article.className = 'section-card infographic-card';
 
