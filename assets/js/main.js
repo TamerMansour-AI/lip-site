@@ -168,11 +168,14 @@
     if (!form) return;
     form.addEventListener('submit', (e) => {
       e.preventDefault();
-      const name = form.querySelector('[name="name"]').value.trim();
-      const org = form.querySelector('[name="organization"]').value.trim();
-      const role = form.querySelector('[name="role"]').value.trim();
-      const email = form.querySelector('[name="email"]').value.trim();
-      const message = form.querySelector('[name="message"]').value.trim();
+      const getValue = (field) =>
+        form.querySelector(`[name="${field}"]`)?.value.trim() || '';
+
+      const name = getValue('name');
+      const org = getValue('organization');
+      const role = getValue('role');
+      const email = getValue('email');
+      const message = getValue('message');
 
       const subject = encodeURIComponent(`Pilot request: ${name || 'LIP'}`);
       const bodyParts = [

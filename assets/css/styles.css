@@ -843,23 +843,15 @@ footer {
 }
 
 .contact-list {
-  list-style: none;
-  padding: 0;
+  list-style: disc;
+  padding-left: 1.25rem;
   margin: 0;
+  color: var(--muted);
 }
 
 .contact-list li {
-  display: flex;
-  gap: 0.6rem;
-  align-items: flex-start;
-  color: var(--muted);
   font-size: 0.95rem;
   margin-bottom: 0.4rem;
-}
-
-.contact-list span {
-  color: #4c1d95;
-  margin-top: 0.15rem;
 }
 
 .subdued-note {
