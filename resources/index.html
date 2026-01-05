@@ -1,17 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script>
-    (function () {
-      var segments = window.location.pathname.split('/').filter(Boolean);
-      var basePath = '/';
-      if (window.location.hostname.endsWith('github.io')) {
-        var first = segments[0] || '';
-        basePath = first ? '/' + first + '/' : '/';
-      }
-      document.write('<base href="' + basePath + '">');
-    })();
-  </script>
+  <base href="../">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Resources for Lesson Intelligence Packs pilot, including deliverables, visual explainers, and style frames." />
