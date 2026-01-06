@@ -389,6 +389,23 @@ textarea:focus-visible {
   background: linear-gradient(180deg, rgba(0, 0, 0, 0.05) 35%, rgba(0, 0, 0, 0.45));
 }
 
+.preview-overlay {
+  pointer-events: none;
+}
+
+.preview-overlay a,
+.preview-overlay button {
+  pointer-events: auto;
+}
+
+.resource-preview.has-preview .preview-overlay {
+  display: none !important;
+}
+
+.resource-preview.preview-error .preview-overlay {
+  display: flex;
+}
+
 .resource-preview--fallback {
   background: #f8fafc;
 }
@@ -396,7 +413,6 @@ textarea:focus-visible {
 .resource-fallback {
   position: absolute;
   inset: 0;
-  display: flex;
   align-items: center;
   justify-content: center;
   padding: 1rem;

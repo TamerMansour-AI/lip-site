@@ -18,6 +18,19 @@
     }
   }
 
+  function setPreviewState(wrapper, fallback, state) {
+    if (!wrapper) return;
+    if (state === 'loaded') {
+      wrapper.classList.add('has-preview');
+      wrapper.classList.remove('preview-error');
+      fallback?.classList.add('hidden');
+    } else if (state === 'error') {
+      wrapper.classList.add('preview-error');
+      wrapper.classList.remove('has-preview');
+      fallback?.classList.remove('hidden');
+    }
+  }
+
   function buildStyleCard(style) {
     const article = document.createElement('article');
     article.className = 'style-card library-card';
@@ -122,7 +135,7 @@
     overlayButton.setAttribute('aria-label', `Open ${video.title} preview`);
 
     const fallback = document.createElement('div');
-    fallback.className = 'resource-fallback resource-fallback--stack hidden';
+    fallback.className = 'resource-fallback resource-fallback--stack preview-overlay hidden';
 
     const fallbackText = document.createElement('p');
     fallbackText.className = 'resource-fallback__text';
@@ -154,10 +167,14 @@
 
     fallback.append(fallbackText, fallbackBtn);
 
-    iframe.addEventListener('error', () => {
-      fallback.classList.remove('hidden');
+    const handleVideoLoaded = () => setPreviewState(previewWrap, fallback, 'loaded');
+    const handleVideoError = () => {
+      setPreviewState(previewWrap, fallback, 'error');
       previewWrap.classList.add('resource-preview--fallback');
-    });
+    };
+
+    iframe.addEventListener('load', handleVideoLoaded);
+    iframe.addEventListener('error', handleVideoError);
 
     previewWrap.append(iframe, overlayButton, fallback);
 
@@ -233,13 +250,17 @@
     iframe.style.pointerEvents = 'none';
 
     const fallback = document.createElement('div');
-    fallback.className = 'resource-fallback hidden';
+    fallback.className = 'resource-fallback preview-overlay hidden';
     fallback.textContent = 'PDF preview unavailable. Use Open to view the file.';
 
-    iframe.addEventListener('error', () => {
-      fallback.classList.remove('hidden');
+    const handlePdfLoaded = () => setPreviewState(previewWrap, fallback, 'loaded');
+    const handlePdfError = () => {
+      setPreviewState(previewWrap, fallback, 'error');
       previewWrap.classList.add('resource-preview--fallback');
-    });
+    };
+
+    iframe.addEventListener('load', handlePdfLoaded);
+    iframe.addEventListener('error', handlePdfError);
 
     previewWrap.append(iframe, fallback);
 
