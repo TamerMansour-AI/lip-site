@@ -224,7 +224,21 @@
       const altText = img.getAttribute('alt') || '';
       const link = img.closest('a');
 
+      if (link && link.getAttribute('target') === '_blank') {
+        return;
+      }
+
       const openHandler = (event) => {
+        if (
+          event.defaultPrevented ||
+          event.button !== 0 ||
+          event.metaKey ||
+          event.ctrlKey ||
+          event.shiftKey ||
+          event.altKey
+        ) {
+          return;
+        }
         event.preventDefault();
         openModal(fullSrc, altText);
       };
