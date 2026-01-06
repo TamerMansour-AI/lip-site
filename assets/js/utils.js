@@ -38,14 +38,28 @@
   const basePath = detectBasePath() || '/lip-site';
   const rootPath = trimTrailingSlash(basePath) || '';
 
+  function toSiteUrl(pathOrUrl, { encode } = {}) {
+    if (!pathOrUrl) return pathOrUrl;
+    if (/^(https?:)?\/\//i.test(pathOrUrl)) return pathOrUrl;
+
+    const base = document.baseURI || window.location.href;
+
+    const needsRoot =
+      pathOrUrl.startsWith('/') && !pathOrUrl.startsWith(`${rootPath}/`) && pathOrUrl !== rootPath;
+    const normalized = needsRoot ? `${rootPath}${pathOrUrl}` : pathOrUrl;
+
+    try {
+      const resolved = new URL(normalized, base).toString();
+      return encode ? encodeURI(resolved) : resolved;
+    } catch (error) {
+      console.warn('toSiteUrl issue', error);
+      return encode ? encodeURI(normalized) : normalized;
+    }
+  }
+
   function buildUrl(path, { encode } = {}) {
     if (!path) return path;
-    if (/^(https?:)?\/\//i.test(path)) return path;
-
-    const normalizedPath = path.startsWith('/') ? path : `/${path}`;
-    const combinedPath = `${rootPath}${normalizedPath}`;
-    const resolved = new URL(combinedPath, document.baseURI || window.location.href).toString();
-    return encode ? encodeURI(resolved) : resolved;
+    return toSiteUrl(path, { encode });
   }
 
   window.__BASE_PATH__ = rootPath || '/lip-site';
@@ -53,5 +67,7 @@
     basePath: rootPath,
     buildUrl,
     withBase: buildUrl,
+    toSiteUrl,
   };
+  window.toSiteUrl = toSiteUrl;
 })();

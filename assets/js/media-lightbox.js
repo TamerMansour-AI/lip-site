@@ -21,6 +21,7 @@
 
     const dialog = document.createElement('div');
     dialog.className = 'media-lightbox__dialog';
+    dialog.setAttribute('role', 'document');
 
     const closeBtn = document.createElement('button');
     closeBtn.type = 'button';
@@ -81,6 +82,8 @@
       state.openLink.classList.add('hidden');
     }
     if (state.body) {
+      const iframe = state.body.querySelector('iframe');
+      if (iframe) iframe.src = '';
       state.body.innerHTML = '';
     }
     document.body.classList.remove('modal-open');
@@ -98,14 +101,14 @@
     }
 
     if (type === 'video') {
-      const video = document.createElement('video');
-      video.src = src;
-      video.controls = true;
-      video.preload = 'metadata';
-      video.playsInline = true;
-      video.className = 'media-lightbox__video';
-      if (poster) video.poster = poster;
-      return video;
+      const frame = document.createElement('iframe');
+      frame.src = src;
+      frame.loading = 'lazy';
+      frame.title = 'Video preview';
+      frame.className = 'media-lightbox__frame';
+      frame.setAttribute('allow', 'autoplay; fullscreen');
+      frame.setAttribute('allowfullscreen', 'true');
+      return frame;
     }
 
     const frame = document.createElement('iframe');
@@ -117,7 +120,7 @@
     return frame;
   }
 
-  function open({ type, src, title, poster }) {
+  function open({ type, src, title, poster, openUrl }) {
     if (!src) return;
     const lb = buildLightbox();
     if (!lb || !state.body) return;
@@ -129,7 +132,7 @@
     state.body.appendChild(contentEl);
     state.title.textContent = title || '';
     if (state.openLink) {
-      state.openLink.href = src;
+      state.openLink.href = openUrl || src;
       state.openLink.classList.remove('hidden');
     }
 

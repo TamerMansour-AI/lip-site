@@ -1,5 +1,6 @@
 (function () {
   const pathUtils = window.LIP_PATHS || {};
+  const toSiteUrl = pathUtils.toSiteUrl || ((path) => path);
   const withBase = pathUtils.buildUrl || pathUtils.withBase || ((path) => path);
   const basePath = pathUtils.basePath || '/lip-site';
 
@@ -70,15 +71,19 @@
     {
       id: 'video-01',
       title: 'Animated Explainers (Pilot) – Overview',
-      description: 'Local MP4 preview of the animated explainers walkthrough.',
-      filePath: '/assets/videos/animated-explainers-overview.mp4',
+      description: 'Drive-hosted preview of the animated explainers walkthrough.',
+      driveFileId: '1AAT0PYvaKpkr4Bntf9jOa-PI0eQXXw-8',
+      shareUrl: 'https://drive.google.com/file/d/1AAT0PYvaKpkr4Bntf9jOa-PI0eQXXw-8/view?usp=sharing',
+      embedUrl: 'https://drive.google.com/file/d/1AAT0PYvaKpkr4Bntf9jOa-PI0eQXXw-8/preview',
       poster: '/assets/styles/style-01.jpg',
     },
     {
       id: 'video-02',
       title: 'Source-Bound Lesson Clarity – Sample clip',
-      description: 'Local MP4 preview for the “Source-Bound Lesson Clarity” concept.',
-      filePath: '/assets/videos/source-bound-lesson-clarity.mp4',
+      description: 'Drive-hosted overview video for the “Source-Bound Lesson Clarity” concept.',
+      driveFileId: '1Fm7M7XXIYTBW-UBI9UgXyy4ZhEyZhCJa',
+      shareUrl: 'https://drive.google.com/file/d/1Fm7M7XXIYTBW-UBI9UgXyy4ZhEyZhCJa/view?usp=sharing',
+      embedUrl: 'https://drive.google.com/file/d/1Fm7M7XXIYTBW-UBI9UgXyy4ZhEyZhCJa/preview',
       poster: '/assets/styles/style-04.jpg',
     },
   ];
@@ -107,20 +112,24 @@
   const styles = STYLE_ITEMS.map((item, index) => ({
     ...item,
     badge: item.badge || `Style ${String(index + 1).padStart(2, '0')}`,
-    resolvedImage: withBase(item.imagePath, { encode: true }),
+    resolvedImage: toSiteUrl(item.imagePath, { encode: true }),
   }));
 
-  const videos = VIDEO_ITEMS.map((item, index) => ({
-    ...item,
-    badge: item.badge || `Video ${String(index + 1).padStart(2, '0')}`,
-    resolvedFile: withBase(item.filePath, { encode: true }),
-    resolvedPoster: item.poster ? withBase(item.poster, { encode: true }) : '',
-  }));
+  const videos = VIDEO_ITEMS.map((item, index) => {
+    const embedUrl = item.embedUrl || (item.driveFileId ? `https://drive.google.com/file/d/${item.driveFileId}/preview` : '');
+    return {
+      ...item,
+      badge: item.badge || `Video ${String(index + 1).padStart(2, '0')}`,
+      embedUrl,
+      shareUrl: item.shareUrl || embedUrl,
+      resolvedPoster: item.poster ? toSiteUrl(item.poster, { encode: true }) : '',
+    };
+  });
 
   const pdfs = PDF_ITEMS.map((item, index) => ({
     ...item,
     badge: item.badge || `PDF ${String(index + 1).padStart(2, '0')}`,
-    resolvedFile: withBase(item.filePath, { encode: true }),
+    resolvedFile: toSiteUrl(item.filePath, { encode: true }),
   }));
 
   window.LIP_LIBRARY = {
