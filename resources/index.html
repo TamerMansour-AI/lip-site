@@ -1,10 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script>
+    (function () {
+      var segments = window.location.pathname.split('/').filter(Boolean);
+      var basePath = '/';
+      if (window.location.hostname.endsWith('github.io')) {
+        var first = segments[0] || '';
+        basePath = first ? '/' + first + '/' : '/';
+      }
+      document.write('<base href="' + basePath + '">');
+    })();
+  </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Resources for Lesson Intelligence Packs pilot, including deliverables, visual explainers, and style frames." />
-  <meta name="base-path" content="" />
+  <meta name="base-path" content="/lip-site" />
   <link rel="canonical" href="/lip-site/resources/" />
   <meta property="og:title" content="Lesson Intelligence Packs (LIP) – Resources" />
   <meta property="og:description" content="Pilot deliverables, style previews, and NotebookLM outputs." />
@@ -79,19 +90,6 @@
       </div>
     </section>
 
-    <section class="py-12 bg-surface">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 space-y-6">
-        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-          <div class="space-y-2">
-            <span class="section-divider">Resource library</span>
-            <h2 class="section-title">Pilot deliverables &amp; videos</h2>
-          </div>
-          <p class="text-sm text-slate-600 max-w-xl">Preview PDFs and Google Drive videos inline, then open them in a modal or a new tab for full fidelity.</p>
-        </div>
-        <div id="resource-grid" class="resource-grid" aria-live="polite"></div>
-      </div>
-    </section>
-
     <section id="styles" class="py-12">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 space-y-6">
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
@@ -99,174 +97,38 @@
             <span class="section-divider">Style hub</span>
             <h2 class="section-title">Style previews</h2>
           </div>
-          <p class="text-sm text-slate-600">Browse visual directions ready for review.</p>
+          <p class="text-sm text-slate-600">Style references (visual direction). Click to view full size.</p>
         </div>
-        <p class="text-sm text-slate-600">Style references (visual direction). Click to view full size.</p>
-        <div class="card-grid">
-          <article class="style-card">
-            <div class="style-media">
-              <a href="/lip-site/assets/styles/Clay%20toy.png" target="_blank" rel="noopener" class="style-img-link">
-                <img src="/lip-site/assets/styles/Clay%20toy.png" alt="Style 01 – Clay toy render of classroom scene" class="style-preview" data-fullsrc="/lip-site/assets/styles/Clay%20toy.png" onerror="this.classList.add('hidden'); this.closest('.style-card').querySelector('.style-fallback').classList.remove('hidden');" />
-              </a>
-              <div class="style-fallback hidden text-sm font-semibold text-slate-500">Style 01</div>
-            </div>
-            <div class="mt-3">
-              <p class="font-semibold text-slate-900">Style 01</p>
-              <p class="text-sm text-slate-600">Clay toy charm with tactile textures. Perfect for playful science explainers.</p>
-            </div>
-          </article>
-          <article class="style-card">
-            <div class="style-media">
-              <a href="/lip-site/assets/styles/Flat%20Vetor.png" target="_blank" rel="noopener" class="style-img-link">
-                <img src="/lip-site/assets/styles/Flat%20Vetor.png" alt="Style 02 – Flat vector education illustration" class="style-preview" data-fullsrc="/lip-site/assets/styles/Flat%20Vetor.png" onerror="this.classList.add('hidden'); this.closest('.style-card').querySelector('.style-fallback').classList.remove('hidden');" />
-              </a>
-              <div class="style-fallback hidden text-sm font-semibold text-slate-500">Style 02</div>
-            </div>
-            <div class="mt-3">
-              <p class="font-semibold text-slate-900">Style 02</p>
-              <p class="text-sm text-slate-600">Crisp flat vectors that keep concepts clear. Great for step-by-step visuals.</p>
-            </div>
-          </article>
-          <article class="style-card">
-            <div class="style-media">
-              <a href="/lip-site/assets/styles/Soft%20Pastel.png" target="_blank" rel="noopener" class="style-img-link">
-                <img src="/lip-site/assets/styles/Soft%20Pastel.png" alt="Style 03 – Soft pastel lesson illustration" class="style-preview" data-fullsrc="/lip-site/assets/styles/Soft%20Pastel.png" onerror="this.classList.add('hidden'); this.closest('.style-card').querySelector('.style-fallback').classList.remove('hidden');" />
-              </a>
-              <div class="style-fallback hidden text-sm font-semibold text-slate-500">Style 03</div>
-            </div>
-            <div class="mt-3">
-              <p class="font-semibold text-slate-900">Style 03</p>
-              <p class="text-sm text-slate-600">Soft pastel warmth with gentle gradients. Ideal for calming classroom stories.</p>
-            </div>
-          </article>
-          <article class="style-card">
-            <div class="style-media">
-              <a href="/lip-site/assets/styles/Anime%20tech.png" target="_blank" rel="noopener" class="style-img-link">
-                <img src="/lip-site/assets/styles/Anime%20tech.png" alt="Style 04 – Anime tech inspired scene" class="style-preview" data-fullsrc="/lip-site/assets/styles/Anime%20tech.png" onerror="this.classList.add('hidden'); this.closest('.style-card').querySelector('.style-fallback').classList.remove('hidden');" />
-              </a>
-              <div class="style-fallback hidden text-sm font-semibold text-slate-500">Style 04</div>
-            </div>
-            <div class="mt-3">
-              <p class="font-semibold text-slate-900">Style 04</p>
-              <p class="text-sm text-slate-600">Anime-tech energy with sleek glows. Great for future-forward STEM stories.</p>
-            </div>
-          </article>
-          <article class="style-card">
-            <div class="style-media">
-              <a href="/lip-site/assets/styles/Paper%20Cut.png" target="_blank" rel="noopener" class="style-img-link">
-                <img src="/lip-site/assets/styles/Paper%20Cut.png" alt="Style 05 – Paper cut layered illustration" class="style-preview" data-fullsrc="/lip-site/assets/styles/Paper%20Cut.png" onerror="this.classList.add('hidden'); this.closest('.style-card').querySelector('.style-fallback').classList.remove('hidden');" />
-              </a>
-              <div class="style-fallback hidden text-sm font-semibold text-slate-500">Style 05</div>
-            </div>
-            <div class="mt-3">
-              <p class="font-semibold text-slate-900">Style 05</p>
-              <p class="text-sm text-slate-600">Layered paper-cut depth for tactile storytelling. Feels crafted and tangible.</p>
-            </div>
-          </article>
-          <article class="style-card">
-            <div class="style-media">
-              <a href="/lip-site/assets/styles/Cozy%203D%20Doll.png" target="_blank" rel="noopener" class="style-img-link">
-                <img src="/lip-site/assets/styles/Cozy%203D%20Doll.png" alt="Style 06 – Cozy 3D doll classroom" class="style-preview" data-fullsrc="/lip-site/assets/styles/Cozy%203D%20Doll.png" onerror="this.classList.add('hidden'); this.closest('.style-card').querySelector('.style-fallback').classList.remove('hidden');" />
-              </a>
-              <div class="style-fallback hidden text-sm font-semibold text-slate-500">Style 06</div>
-            </div>
-            <div class="mt-3">
-              <p class="font-semibold text-slate-900">Style 06</p>
-              <p class="text-sm text-slate-600">Cozy 3D dolls with soft lighting. Invites young learners into the scene.</p>
-            </div>
-          </article>
-          <article class="style-card">
-            <div class="style-media">
-              <a href="/lip-site/assets/styles/Watercolor.png" target="_blank" rel="noopener" class="style-img-link">
-                <img src="/lip-site/assets/styles/Watercolor.png" alt="Style 07 – Watercolor science vignette" class="style-preview" data-fullsrc="/lip-site/assets/styles/Watercolor.png" onerror="this.classList.add('hidden'); this.closest('.style-card').querySelector('.style-fallback').classList.remove('hidden');" />
-              </a>
-              <div class="style-fallback hidden text-sm font-semibold text-slate-500">Style 07</div>
-            </div>
-            <div class="mt-3">
-              <p class="font-semibold text-slate-900">Style 07</p>
-              <p class="text-sm text-slate-600">Loose watercolor washes with airy ink lines. Great for empathetic storytelling.</p>
-            </div>
-          </article>
-          <article class="style-card">
-            <div class="style-media">
-              <a href="/lip-site/assets/styles/Retro%20Poster.png" target="_blank" rel="noopener" class="style-img-link">
-                <img src="/lip-site/assets/styles/Retro%20Poster.png" alt="Style 08 – Retro poster graphic" class="style-preview" data-fullsrc="/lip-site/assets/styles/Retro%20Poster.png" onerror="this.classList.add('hidden'); this.closest('.style-card').querySelector('.style-fallback').classList.remove('hidden');" />
-              </a>
-              <div class="style-fallback hidden text-sm font-semibold text-slate-500">Style 08</div>
-            </div>
-            <div class="mt-3">
-              <p class="font-semibold text-slate-900">Style 08</p>
-              <p class="text-sm text-slate-600">Retro poster punch with bold type. Perfect for announcements and hooks.</p>
-            </div>
-          </article>
-          <article class="style-card">
-            <div class="style-media">
-              <a href="/lip-site/assets/styles/Neon%20Cinematic.png" target="_blank" rel="noopener" class="style-img-link">
-                <img src="/lip-site/assets/styles/Neon%20Cinematic.png" alt="Style 09 – Neon cinematic lighting" class="style-preview" data-fullsrc="/lip-site/assets/styles/Neon%20Cinematic.png" onerror="this.classList.add('hidden'); this.closest('.style-card').querySelector('.style-fallback').classList.remove('hidden');" />
-              </a>
-              <div class="style-fallback hidden text-sm font-semibold text-slate-500">Style 09</div>
-            </div>
-            <div class="mt-3">
-              <p class="font-semibold text-slate-900">Style 09</p>
-              <p class="text-sm text-slate-600">Neon cinematic glow with dramatic contrast. Great for tech-forward reveals.</p>
-            </div>
-          </article>
-          <article class="style-card">
-            <div class="style-media">
-              <a href="/lip-site/assets/styles/Photoreal.png" target="_blank" rel="noopener" class="style-img-link">
-                <img src="/lip-site/assets/styles/Photoreal.png" alt="Style 10 – Photoreal classroom storytelling" class="style-preview" data-fullsrc="/lip-site/assets/styles/Photoreal.png" onerror="this.classList.add('hidden'); this.closest('.style-card').querySelector('.style-fallback').classList.remove('hidden');" />
-              </a>
-              <div class="style-fallback hidden text-sm font-semibold text-slate-500">Style 10</div>
-            </div>
-            <div class="mt-3">
-              <p class="font-semibold text-slate-900">Style 10</p>
-              <p class="text-sm text-slate-600">Photoreal clarity that mirrors live classrooms. Ideal for credibility and detail.</p>
-            </div>
-          </article>
-        </div>
+        <div class="card-grid" data-style-grid aria-live="polite"></div>
       </div>
     </section>
 
-    <section class="py-12 bg-surface">
+    <section id="videos" class="py-12 bg-surface">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 space-y-6">
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
           <div class="space-y-2">
-            <span class="section-divider">Resource library</span>
-            <h2 class="section-title">Pilot deliverables &amp; videos</h2>
+            <span class="section-divider">Videos</span>
+            <h2 class="section-title">Local preview clips</h2>
           </div>
-          <p class="text-sm text-slate-600 max-w-xl">Preview PDFs and Google Drive videos inline, then open them in a modal or a new tab for full fidelity.</p>
+          <p class="text-sm text-slate-600 max-w-xl">Inline previews with controls. Open or download for the full MP4.</p>
         </div>
-        <div id="resource-grid" class="resource-grid" aria-live="polite"></div>
+        <div class="resource-grid" data-video-grid aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section id="pdfs" class="py-12">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 space-y-6">
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+          <div class="space-y-2">
+            <span class="section-divider">PDFs</span>
+            <h2 class="section-title">Downloadable decks</h2>
+          </div>
+          <p class="text-sm text-slate-600 max-w-xl">Preview directly on the page or open/download to share.</p>
+        </div>
+        <div class="resource-grid" data-pdf-grid aria-live="polite"></div>
       </div>
     </section>
   </main>
-
-  <div id="resource-modal" class="resource-modal" aria-hidden="true">
-    <div class="resource-modal__overlay" data-resource-modal-overlay></div>
-    <div class="resource-modal__dialog" role="dialog" aria-modal="true" aria-label="Resource preview">
-      <button type="button" class="resource-modal__close" data-resource-modal-close aria-label="Close resource preview">
-        <span aria-hidden="true">&times;</span>
-      </button>
-      <div class="resource-modal__body" data-resource-modal-body></div>
-      <div class="resource-modal__meta">
-        <div>
-          <h3 class="resource-modal__title" data-resource-modal-title></h3>
-          <p class="resource-modal__subtitle" data-resource-modal-subtitle></p>
-        </div>
-        <a href="#" target="_blank" rel="noopener" class="btn-primary btn-sm" data-resource-modal-open>Open in new tab</a>
-      </div>
-    </div>
-  </div>
-
-  <div id="style-lightbox" class="style-lightbox" aria-hidden="true">
-    <div class="style-lightbox__overlay" data-lightbox-overlay></div>
-    <div class="style-lightbox__dialog" role="dialog" aria-modal="true" aria-label="Style preview">
-      <button type="button" class="style-lightbox__close" data-lightbox-close aria-label="Close preview">
-        <span aria-hidden="true">&times;</span>
-      </button>
-      <img src="" alt="" data-lightbox-img loading="lazy" />
-    </div>
-  </div>
 
   <footer class="py-10 bg-slate-50 text-slate-700">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
@@ -283,7 +145,9 @@
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
   <script src="/lip-site/assets/js/main.js"></script>
+  <script src="/lip-site/assets/js/library-data.js"></script>
+  <script src="/lip-site/assets/js/media-lightbox.js"></script>
+  <script src="/lip-site/assets/js/library-renderers.js"></script>
   <script src="/lip-site/assets/js/resources-infographics.js"></script>
-  <script src="/lip-site/assets/js/resources-library.js"></script>
 </body>
 </html>
