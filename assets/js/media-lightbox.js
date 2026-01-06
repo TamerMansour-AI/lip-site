@@ -3,6 +3,7 @@
     lightbox: null,
     body: null,
     title: null,
+    openLink: null,
   };
 
   function buildLightbox() {
@@ -31,19 +32,35 @@
     content.className = 'media-lightbox__body';
     content.setAttribute('data-media-lightbox-body', '');
 
+    const meta = document.createElement('div');
+    meta.className = 'media-lightbox__meta';
+
     const title = document.createElement('div');
     title.className = 'media-lightbox__title';
     title.setAttribute('data-media-lightbox-title', '');
 
-    dialog.append(closeBtn, content, title);
+    const openLink = document.createElement('a');
+    openLink.className = 'media-lightbox__open';
+    openLink.setAttribute('data-media-lightbox-open', '');
+    openLink.textContent = 'Open in new tab';
+    openLink.target = '_blank';
+    openLink.rel = 'noopener';
+    openLink.classList.add('hidden');
+    openLink.addEventListener('click', (event) => event.stopPropagation());
+
+    meta.append(title, openLink);
+
+    dialog.append(closeBtn, content, meta);
     wrapper.append(overlay, dialog);
     document.body.appendChild(wrapper);
 
     state.lightbox = wrapper;
     state.body = content;
     state.title = title;
+    state.openLink = openLink;
 
     overlay.addEventListener('click', close);
+    dialog.addEventListener('click', (event) => event.stopPropagation());
     closeBtn.addEventListener('click', close);
     document.addEventListener('keydown', (event) => {
       if (event.key === 'Escape' && wrapper.classList.contains('active')) {
@@ -59,6 +76,10 @@
     state.lightbox.classList.remove('active');
     state.lightbox.setAttribute('aria-hidden', 'true');
     state.title.textContent = '';
+    if (state.openLink) {
+      state.openLink.removeAttribute('href');
+      state.openLink.classList.add('hidden');
+    }
     if (state.body) {
       state.body.innerHTML = '';
     }
@@ -107,6 +128,10 @@
     state.body.innerHTML = '';
     state.body.appendChild(contentEl);
     state.title.textContent = title || '';
+    if (state.openLink) {
+      state.openLink.href = src;
+      state.openLink.classList.remove('hidden');
+    }
 
     lb.classList.add('active');
     lb.setAttribute('aria-hidden', 'false');

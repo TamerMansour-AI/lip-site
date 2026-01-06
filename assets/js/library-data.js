@@ -1,40 +1,7 @@
 (function () {
-  function trimTrailingSlash(value) {
-    return value ? value.replace(/\/$/, '') : '';
-  }
-
-  function detectBasePath() {
-    const meta = document.querySelector('meta[name="base-path"]');
-    const metaPath = trimTrailingSlash(meta?.content?.trim() || '');
-    if (metaPath) return metaPath;
-
-    if (typeof window !== 'undefined') {
-      const winBase = trimTrailingSlash(window.__BASE_PATH__ || '');
-      if (winBase) return winBase;
-
-      if (window.location?.hostname?.endsWith('github.io')) {
-        const segments = window.location.pathname.split('/').filter(Boolean);
-        const first = segments[0] || '';
-        if (first) return `/${first}`;
-      }
-    }
-
-    return '';
-  }
-
-  const basePath = detectBasePath() || '/lip-site';
-  window.__BASE_PATH__ = basePath;
-
-  function withBase(path, { encode } = {}) {
-    if (!path) return path;
-    if (/^(https?:)?\/\//i.test(path)) return path;
-    const cleanBase = basePath === '/' ? '' : basePath;
-    if (path.startsWith(cleanBase + '/')) {
-      return encode ? encodeURI(path) : path;
-    }
-    const prefixed = path.startsWith('/') ? `${cleanBase}${path}` : path;
-    return encode ? encodeURI(prefixed) : prefixed;
-  }
+  const pathUtils = window.LIP_PATHS || {};
+  const withBase = pathUtils.buildUrl || pathUtils.withBase || ((path) => path);
+  const basePath = pathUtils.basePath || '/lip-site';
 
   const STYLE_ITEMS = [
     {
@@ -134,36 +101,6 @@
       title: 'Source-Bound Lesson Clarity',
       description: 'Slide deck explaining the “Source-Bound Lesson Clarity” concept.',
       filePath: '/assets/docs/Source_Bound_Lesson_Clarity.pdf',
-    },
-    {
-      id: 'pdf-04',
-      title: 'LIP Pilot Snapshot',
-      description: 'At-a-glance PDF for the Lesson Intelligence Packs pilot.',
-      filePath: '/assets/docs/LIP_Pilot_Snapshot.pdf',
-    },
-    {
-      id: 'pdf-05',
-      title: 'Animated Explainers Pilot – What This Includes',
-      description: 'Breakdown of the animated explainers pilot deliverables.',
-      filePath: '/assets/docs/Animated_Explainers_Pilot_What_This_Includes.pdf',
-    },
-    {
-      id: 'pdf-06',
-      title: 'LIP Sample Frames Guide',
-      description: 'Reference frames and guidance for LIP visuals.',
-      filePath: '/assets/docs/LIP_Sample_Frames_Guide.pdf',
-    },
-    {
-      id: 'pdf-07',
-      title: 'LIP Style Menu',
-      description: 'Menu of visual style directions for Lesson Intelligence Packs.',
-      filePath: '/assets/docs/LIP_Style_Menu.pdf',
-    },
-    {
-      id: 'pdf-08',
-      title: 'LIP Short FAQ',
-      description: 'Quick answers to common questions about LIP.',
-      filePath: '/assets/docs/LIP_Short_FAQ.pdf',
     },
   ];
 
