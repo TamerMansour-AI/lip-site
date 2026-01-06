@@ -191,11 +191,70 @@
     });
   }
 
+  function setupStyleLightbox() {
+    const modal = document.getElementById('style-lightbox');
+    if (!modal) return;
+
+    const modalImg = modal.querySelector('[data-lightbox-img]');
+    const closeButton = modal.querySelector('[data-lightbox-close]');
+    const overlay = modal.querySelector('[data-lightbox-overlay]');
+
+    const closeModal = () => {
+      modal.classList.remove('active');
+      modal.setAttribute('aria-hidden', 'true');
+      if (modalImg) {
+        modalImg.removeAttribute('src');
+        modalImg.removeAttribute('alt');
+      }
+      document.body.classList.remove('no-scroll');
+    };
+
+    const openModal = (src, altText) => {
+      if (!modalImg || !src) return;
+      modalImg.setAttribute('src', src);
+      modalImg.setAttribute('alt', altText || 'Style preview');
+      modal.classList.add('active');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('no-scroll');
+    };
+
+    const wirePreview = (img) => {
+      if (!img) return;
+      const fullSrc = img.dataset.fullsrc || img.src;
+      const altText = img.getAttribute('alt') || '';
+      const link = img.closest('a');
+
+      const openHandler = (event) => {
+        event.preventDefault();
+        openModal(fullSrc, altText);
+      };
+
+      img.addEventListener('click', openHandler);
+      if (link) {
+        link.addEventListener('click', openHandler);
+      }
+    };
+
+    document.querySelectorAll('.style-preview').forEach((img) => wirePreview(img));
+
+    overlay?.addEventListener('click', closeModal);
+    closeButton?.addEventListener('click', closeModal);
+    modal.addEventListener('click', (event) => {
+      if (event.target === modal) closeModal();
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && modal.classList.contains('active')) {
+        closeModal();
+      }
+    });
+  }
+
   document.addEventListener('DOMContentLoaded', () => {
     rewriteBaseLinks();
     setupMobileNav();
     setupSmoothScroll();
     setupActiveLinks();
     setupMailto();
+    setupStyleLightbox();
   });
 })();
