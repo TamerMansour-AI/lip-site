@@ -321,6 +321,190 @@ textarea:focus-visible {
   text-align: center;
 }
 
+.resource-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.25rem;
+}
+
+.resource-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: auto 1fr;
+}
+
+.resource-preview {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: linear-gradient(135deg, rgba(148, 163, 184, 0.12), rgba(148, 163, 184, 0.18));
+  border-bottom: 1px solid var(--border);
+}
+
+.resource-preview iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: #0b1021;
+}
+
+.resource-preview--fallback {
+  background: #f8fafc;
+}
+
+.resource-fallback {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: linear-gradient(135deg, rgba(226, 232, 240, 0.85), rgba(241, 245, 249, 0.95));
+  text-align: center;
+}
+
+.resource-card__body {
+  padding: 1rem 1.1rem 1.25rem;
+  display: grid;
+  gap: 0.35rem;
+}
+
+.resource-card__title {
+  font-weight: 700;
+  color: var(--navy);
+  font-size: 1.05rem;
+}
+
+.resource-card__subtitle {
+  color: #475569;
+  font-size: 0.95rem;
+}
+
+.resource-card__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin-top: 0.35rem;
+}
+
+.resource-modal {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 1.5rem;
+  z-index: 80;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 160ms ease;
+}
+
+.resource-modal.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.resource-modal__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(4px);
+}
+
+.resource-modal__dialog {
+  position: relative;
+  z-index: 1;
+  width: min(1100px, 92vw);
+  max-height: 90vh;
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 28px 65px rgba(15, 23, 42, 0.36);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  display: grid;
+  grid-template-rows: 1fr auto;
+}
+
+.resource-modal__body {
+  position: relative;
+  background: #0b1021;
+}
+
+.resource-modal__iframe {
+  width: 100%;
+  height: 100%;
+  min-height: 60vh;
+  border: 0;
+}
+
+.resource-modal__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.85rem 1rem 1rem;
+  background: linear-gradient(135deg, rgba(248, 250, 252, 0.9), rgba(226, 232, 240, 0.9));
+  border-top: 1px solid var(--border);
+}
+
+.resource-modal__title {
+  font-weight: 800;
+  color: var(--navy);
+}
+
+.resource-modal__subtitle {
+  color: #475569;
+  font-size: 0.95rem;
+}
+
+.resource-modal__close {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.95);
+  color: var(--navy);
+  border-radius: 999px;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.16);
+  transition: transform 120ms ease, box-shadow 120ms ease, background 120ms ease;
+}
+
+.resource-modal__close:hover,
+.resource-modal__close:focus-visible {
+  transform: scale(1.04);
+  background: #fff;
+  box-shadow: 0 14px 32px rgba(15, 23, 42, 0.2);
+}
+
+@media (max-width: 640px) {
+  .resource-modal__dialog {
+    width: 95vw;
+    max-height: 92vh;
+  }
+  .resource-modal__iframe {
+    min-height: 50vh;
+  }
+  .resource-modal__meta {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
 body.modal-open {
   overflow: hidden;
 }
@@ -339,6 +523,12 @@ body.modal-open {
   color: #4c1d95;
   font-weight: 600;
   font-size: 0.875rem;
+}
+
+.badge-muted {
+  background: rgba(148, 163, 184, 0.12);
+  color: #0f172a;
+  border: 1px solid rgba(148, 163, 184, 0.35);
 }
 
 .eyebrow {
@@ -484,6 +674,11 @@ body.modal-open {
   font-weight: 700;
   border: 1px solid #6d28d9;
   box-shadow: 0 8px 20px rgba(124, 58, 237, 0.3);
+}
+
+.btn-sm {
+  padding: 0.6rem 1rem;
+  font-size: 0.9rem;
 }
 
 .btn-secondary {
