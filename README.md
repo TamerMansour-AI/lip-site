@@ -21,6 +21,10 @@ Premium, mobile-first marketing site for Lesson Intelligence Packs (LIP). Built 
 - Links marked with `data-base="1"` are rewritten at runtime using the detected base path.
 
 ## Replacing placeholders
+- Media library data lives in `assets/js/library-data.js`:
+  - Place videos in `/assets/videos/` and register them in the `VIDEO_ITEMS` array (each needs a `filePath`, title/description, and optional `poster`).
+  - PDFs live in `/assets/docs/` and are registered in `PDF_ITEMS`.
+  - Style cards pull from `/assets/styles/`; add new entries to `STYLE_ITEMS` to surface them on Home and Resources.
 - PDFs (required names): place final files inside `/assets/docs/`
   - `LIP_Pilot_Snapshot.pdf`
   - `Animated_Explainers_Pilot_What_This_Includes.pdf`

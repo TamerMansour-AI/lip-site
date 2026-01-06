@@ -15,7 +15,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Lesson Intelligence Packs deliver source-bound animated explainers and structured outputs for schools." />
-  <meta name="base-path" content="" />
+  <meta name="base-path" content="/lip-site" />
   <link rel="canonical" href="/lip-site/" />
   <meta property="og:title" content="Lesson Intelligence Packs (LIP)" />
   <meta property="og:description" content="Stakeholder-ready learning media—starting with Animated Explainers (Pilot)." />
@@ -188,48 +188,7 @@
           </div>
           <a href="/lip-site/resources/#styles" class="link-soft inline-flex items-center gap-1">See examples in Resources<span aria-hidden="true">→</span></a>
         </div>
-        <div class="card-grid">
-          <div class="style-card">
-            <p class="font-semibold text-slate-900">Blueprint Calm</p>
-            <p class="text-sm text-slate-600">Cool blues, simple line art.</p>
-          </div>
-          <div class="style-card">
-            <p class="font-semibold text-slate-900">Chalk & Glow</p>
-            <p class="text-sm text-slate-600">Dark board with neon highlights.</p>
-          </div>
-          <div class="style-card">
-            <p class="font-semibold text-slate-900">Paper Craft</p>
-            <p class="text-sm text-slate-600">Tactile cut-out layers.</p>
-          </div>
-          <div class="style-card">
-            <p class="font-semibold text-slate-900">Clean Gradient</p>
-            <p class="text-sm text-slate-600">Soft violets with subtle depth.</p>
-          </div>
-          <div class="style-card">
-            <p class="font-semibold text-slate-900">Bold Contrast</p>
-            <p class="text-sm text-slate-600">Crisp shapes, confident typography.</p>
-          </div>
-          <div class="style-card">
-            <p class="font-semibold text-slate-900">STEM Lab</p>
-            <p class="text-sm text-slate-600">Schematic icons, measured motion.</p>
-          </div>
-          <div class="style-card">
-            <p class="font-semibold text-slate-900">Warm Storyboard</p>
-            <p class="text-sm text-slate-600">Hand-drawn warmth with steady pacing.</p>
-          </div>
-          <div class="style-card">
-            <p class="font-semibold text-slate-900">Minimal Grid</p>
-            <p class="text-sm text-slate-600">Airy layouts, clear hierarchy.</p>
-          </div>
-          <div class="style-card">
-            <p class="font-semibold text-slate-900">Playful Precision</p>
-            <p class="text-sm text-slate-600">Friendly edges without losing rigor.</p>
-          </div>
-          <div class="style-card">
-            <p class="font-semibold text-slate-900">Monochrome Focus</p>
-            <p class="text-sm text-slate-600">High-contrast ink with accent pops.</p>
-          </div>
-        </div>
+        <div class="card-grid" data-style-grid aria-live="polite"></div>
       </div>
     </section>
 
@@ -374,5 +333,8 @@
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
   <script src="/lip-site/assets/js/main.js"></script>
+  <script src="/lip-site/assets/js/library-data.js"></script>
+  <script src="/lip-site/assets/js/media-lightbox.js"></script>
+  <script src="/lip-site/assets/js/library-renderers.js"></script>
 </body>
 </html>
