@@ -3,17 +3,18 @@
   const lightbox = window.LIP_LIGHTBOX;
   const pathUtils = window.LIP_PATHS || {};
 
+  const toSiteUrl = pathUtils.toSiteUrl || pathUtils.buildUrl || pathUtils.withBase || ((v) => v);
+
   function resolve(path, encode = false) {
-    if (typeof pathUtils.buildUrl === 'function') return pathUtils.buildUrl(path, { encode });
-    if (typeof data.withBase === 'function') return data.withBase(path, { encode });
+    if (typeof toSiteUrl === 'function') return toSiteUrl(path, { encode });
     return path;
   }
 
-  function openInLightbox({ type, src, title, poster }) {
+  function openInLightbox({ type, src, title, poster, openUrl }) {
     if (lightbox && typeof lightbox.open === 'function') {
-      lightbox.open({ type, src, title, poster });
+      lightbox.open({ type, src, title, poster, openUrl });
     } else if (src) {
-      window.open(src, '_blank', 'noopener');
+      window.open(openUrl || src, '_blank', 'noopener');
     }
   }
 
@@ -103,18 +104,22 @@
     article.className = 'resource-card media-card';
 
     const previewWrap = document.createElement('div');
-    previewWrap.className = 'resource-preview';
+    previewWrap.className = 'resource-preview video-preview';
 
-    const videoEl = document.createElement('video');
-    videoEl.src = video.resolvedFile || resolve(video.filePath, true);
-    videoEl.muted = true;
-    videoEl.controls = false;
-    videoEl.preload = 'metadata';
-    videoEl.playsInline = true;
-    videoEl.className = 'media-thumb__video';
-    if (video.resolvedPoster || video.poster) {
-      videoEl.poster = video.resolvedPoster || resolve(video.poster, true);
-    }
+    const iframe = document.createElement('iframe');
+    iframe.src = video.embedUrl || video.shareUrl;
+    iframe.loading = 'lazy';
+    iframe.title = `${video.title} preview`;
+    iframe.allow = 'autoplay; fullscreen';
+    iframe.setAttribute('allowfullscreen', 'true');
+    iframe.setAttribute('tabindex', '-1');
+    iframe.setAttribute('aria-hidden', 'true');
+    iframe.className = 'media-thumb__frame';
+
+    const overlayButton = document.createElement('button');
+    overlayButton.type = 'button';
+    overlayButton.className = 'media-thumb__overlay';
+    overlayButton.setAttribute('aria-label', `Open ${video.title} preview`);
 
     const fallback = document.createElement('div');
     fallback.className = 'resource-fallback resource-fallback--stack hidden';
@@ -130,28 +135,31 @@
     fallbackBtn.addEventListener('click', () =>
       openInLightbox({
         type: 'video',
-        src: video.resolvedFile || resolve(video.filePath, true),
+        src: video.embedUrl || video.shareUrl,
         title: video.title,
         poster: video.resolvedPoster || resolve(video.poster, true),
+        openUrl: video.shareUrl || video.embedUrl,
+      })
+    );
+
+    overlayButton.addEventListener('click', () =>
+      openInLightbox({
+        type: 'video',
+        src: video.embedUrl || video.shareUrl,
+        title: video.title,
+        poster: video.resolvedPoster || resolve(video.poster, true),
+        openUrl: video.shareUrl || video.embedUrl,
       })
     );
 
     fallback.append(fallbackText, fallbackBtn);
 
-    videoEl.addEventListener('error', () => {
+    iframe.addEventListener('error', () => {
       fallback.classList.remove('hidden');
       previewWrap.classList.add('resource-preview--fallback');
     });
 
-    videoEl.addEventListener('loadedmetadata', () => {
-      try {
-        videoEl.currentTime = 0.1;
-      } catch (error) {
-        /* no-op */
-      }
-    });
-
-    previewWrap.append(videoEl, fallback);
+    previewWrap.append(iframe, overlayButton, fallback);
 
     const body = document.createElement('div');
     body.className = 'resource-card__body';
@@ -178,14 +186,15 @@
     previewBtn.addEventListener('click', () =>
       openInLightbox({
         type: 'video',
-        src: video.resolvedFile || resolve(video.filePath, true),
+        src: video.embedUrl || video.shareUrl,
         title: video.title,
         poster: video.resolvedPoster || resolve(video.poster, true),
+        openUrl: video.shareUrl || video.embedUrl,
       })
     );
 
     const openLink = document.createElement('a');
-    openLink.href = video.resolvedFile || resolve(video.filePath, true);
+    openLink.href = video.shareUrl || video.embedUrl;
     openLink.target = '_blank';
     openLink.rel = 'noopener';
     openLink.className = 'btn-primary btn-sm';
@@ -225,7 +234,7 @@
 
     const fallback = document.createElement('div');
     fallback.className = 'resource-fallback hidden';
-    fallback.textContent = 'PDF preview unavailable. Use Open or update the path in assets/js/library-data.js.';
+    fallback.textContent = 'PDF preview unavailable. Use Open to view the file.';
 
     iframe.addEventListener('error', () => {
       fallback.classList.remove('hidden');
