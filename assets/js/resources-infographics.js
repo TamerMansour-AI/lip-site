@@ -1,5 +1,7 @@
 (function () {
-  const BASE = '/lip-site/assets/infographics/';
+  const paths = window.LIP_PATHS || {};
+  const withBase = paths.buildUrl || paths.withBase || ((path) => path);
+  const BASE = '/assets/infographics/';
 
   const ITEMS = [
     {
@@ -23,7 +25,7 @@
   if (!grid) return;
 
   function buildCard(item) {
-    const fullSrc = `${BASE}${item.file}`;
+    const fullSrc = withBase(`${BASE}${item.file}`, { encode: true });
     const article = document.createElement('article');
     article.className = 'section-card infographic-card';
 

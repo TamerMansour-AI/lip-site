@@ -1,10 +1,12 @@
 (function () {
   const data = window.LIP_LIBRARY || {};
   const lightbox = window.LIP_LIGHTBOX;
+  const pathUtils = window.LIP_PATHS || {};
 
   function resolve(path, encode = false) {
-    if (!data.withBase) return path;
-    return data.withBase(path, { encode });
+    if (typeof pathUtils.buildUrl === 'function') return pathUtils.buildUrl(path, { encode });
+    if (typeof data.withBase === 'function') return data.withBase(path, { encode });
+    return path;
   }
 
   function openInLightbox({ type, src, title, poster }) {
@@ -105,7 +107,8 @@
 
     const videoEl = document.createElement('video');
     videoEl.src = video.resolvedFile || resolve(video.filePath, true);
-    videoEl.controls = true;
+    videoEl.muted = true;
+    videoEl.controls = false;
     videoEl.preload = 'metadata';
     videoEl.playsInline = true;
     videoEl.className = 'media-thumb__video';
@@ -114,12 +117,38 @@
     }
 
     const fallback = document.createElement('div');
-    fallback.className = 'resource-fallback hidden';
-    fallback.textContent = 'Video file missing. Update the path in assets/js/library-data.js.';
+    fallback.className = 'resource-fallback resource-fallback--stack hidden';
+
+    const fallbackText = document.createElement('p');
+    fallbackText.className = 'resource-fallback__text';
+    fallbackText.textContent = 'Video preview unavailable.';
+
+    const fallbackBtn = document.createElement('button');
+    fallbackBtn.type = 'button';
+    fallbackBtn.className = 'btn-primary btn-sm';
+    fallbackBtn.textContent = 'Open video';
+    fallbackBtn.addEventListener('click', () =>
+      openInLightbox({
+        type: 'video',
+        src: video.resolvedFile || resolve(video.filePath, true),
+        title: video.title,
+        poster: video.resolvedPoster || resolve(video.poster, true),
+      })
+    );
+
+    fallback.append(fallbackText, fallbackBtn);
 
     videoEl.addEventListener('error', () => {
       fallback.classList.remove('hidden');
       previewWrap.classList.add('resource-preview--fallback');
+    });
+
+    videoEl.addEventListener('loadedmetadata', () => {
+      try {
+        videoEl.currentTime = 0.1;
+      } catch (error) {
+        /* no-op */
+      }
     });
 
     previewWrap.append(videoEl, fallback);
@@ -186,10 +215,13 @@
     previewWrap.className = 'resource-preview';
 
     const iframe = document.createElement('iframe');
-    iframe.src = `${pdf.resolvedFile || resolve(pdf.filePath, true)}#view=FitH`;
+    const pdfUrl = pdf.resolvedFile || resolve(pdf.filePath, true);
+    iframe.src = `${pdfUrl}#page=1&toolbar=0&navpanes=0&scrollbar=0`;
     iframe.loading = 'lazy';
     iframe.title = `${pdf.title} preview`;
     iframe.className = 'media-thumb__pdf';
+    iframe.setAttribute('tabindex', '-1');
+    iframe.style.pointerEvents = 'none';
 
     const fallback = document.createElement('div');
     fallback.className = 'resource-fallback hidden';

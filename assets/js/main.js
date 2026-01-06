@@ -1,7 +1,8 @@
 (function () {
-  const basePath = detectBasePath();
-
   function detectBasePath() {
+    const utils = window.LIP_PATHS || {};
+    if (utils.basePath) return utils.basePath.replace(/\/$/, '');
+
     const meta = document.querySelector('meta[name="base-path"]');
     const metaPath = meta?.content?.trim() || '';
     const windowPath = typeof window !== 'undefined' ? window.__BASE_PATH__ : '';
@@ -10,8 +11,11 @@
   }
 
   function withBase(path) {
+    const utils = window.LIP_PATHS || {};
+    if (typeof utils.buildUrl === 'function') return utils.buildUrl(path);
     if (!path) return path;
     if (/^(https?:)?\/\//i.test(path)) return path;
+    const basePath = detectBasePath();
     if (path.startsWith('/')) {
       return `${basePath}${path}`;
     }
