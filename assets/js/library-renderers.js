@@ -3,10 +3,11 @@
   const lightbox = window.LIP_LIGHTBOX;
   const pathUtils = window.LIP_PATHS || {};
 
-  const toSiteUrl = pathUtils.toSiteUrl || pathUtils.buildUrl || pathUtils.withBase || ((v) => v);
+  const normalizeAssetUrl =
+    pathUtils.normalizeAssetUrl || pathUtils.toSiteUrl || pathUtils.buildUrl || pathUtils.withBase || ((v) => v);
 
-  function resolve(path, encode = false) {
-    if (typeof toSiteUrl === 'function') return toSiteUrl(path, { encode });
+  function resolve(path) {
+    if (typeof normalizeAssetUrl === 'function') return normalizeAssetUrl(path);
     return path;
   }
 
@@ -36,7 +37,7 @@
     article.className = 'style-card library-card';
 
     const media = document.createElement('div');
-    media.className = 'style-media';
+    media.className = 'style-media preview';
 
     const mediaButton = document.createElement('button');
     mediaButton.type = 'button';
@@ -44,22 +45,29 @@
     mediaButton.setAttribute('aria-label', `Open ${style.title} preview`);
 
     const img = document.createElement('img');
-    img.src = style.resolvedImage || resolve(style.imagePath, true);
+    img.src = style.resolvedImage || resolve(style.imagePath);
     img.alt = style.title;
     img.loading = 'lazy';
     img.className = 'style-preview';
 
     const fallback = document.createElement('div');
-    fallback.className = 'style-fallback hidden';
+    fallback.className = 'style-fallback preview-overlay hidden';
     fallback.textContent = style.badge || style.title;
 
+    img.addEventListener('load', () => {
+      media.classList.add('has-preview');
+      img.classList.remove('hidden');
+      fallback.classList.add('hidden');
+    });
+
     img.addEventListener('error', () => {
+      media.classList.remove('has-preview');
       img.classList.add('hidden');
       fallback.classList.remove('hidden');
     });
 
     mediaButton.addEventListener('click', () =>
-      openInLightbox({ type: 'image', src: style.resolvedImage || resolve(style.imagePath, true), title: style.title })
+      openInLightbox({ type: 'image', src: style.resolvedImage || resolve(style.imagePath), title: style.title })
     );
 
     mediaButton.append(img, fallback);
@@ -84,11 +92,11 @@
     previewBtn.className = 'btn-secondary btn-sm';
     previewBtn.textContent = 'Preview';
     previewBtn.addEventListener('click', () =>
-      openInLightbox({ type: 'image', src: style.resolvedImage || resolve(style.imagePath, true), title: style.title })
+      openInLightbox({ type: 'image', src: style.resolvedImage || resolve(style.imagePath), title: style.title })
     );
 
     const openLink = document.createElement('a');
-    openLink.href = style.resolvedImage || resolve(style.imagePath, true);
+    openLink.href = style.resolvedImage || resolve(style.imagePath);
     openLink.target = '_blank';
     openLink.rel = 'noopener';
     openLink.className = 'btn-primary btn-sm';
@@ -106,8 +114,12 @@
     nodes.forEach((grid) => {
       grid.innerHTML = '';
       data.styles.forEach((style) => {
-        const card = buildStyleCard(style);
-        grid.appendChild(card);
+        try {
+          const card = buildStyleCard(style);
+          if (card) grid.appendChild(card);
+        } catch (error) {
+          console.warn('Style render issue', error);
+        }
       });
     });
   }
@@ -117,10 +129,10 @@
     article.className = 'resource-card media-card';
 
     const previewWrap = document.createElement('div');
-    previewWrap.className = 'resource-preview video-preview';
+    previewWrap.className = 'resource-preview video-preview preview';
 
     const iframe = document.createElement('iframe');
-    iframe.src = video.embedUrl || video.shareUrl;
+    iframe.src = resolve(video.embedUrl || video.shareUrl);
     iframe.loading = 'lazy';
     iframe.title = `${video.title} preview`;
     iframe.allow = 'autoplay; fullscreen';
@@ -148,20 +160,20 @@
     fallbackBtn.addEventListener('click', () =>
       openInLightbox({
         type: 'video',
-        src: video.embedUrl || video.shareUrl,
+        src: resolve(video.embedUrl || video.shareUrl),
         title: video.title,
-        poster: video.resolvedPoster || resolve(video.poster, true),
-        openUrl: video.shareUrl || video.embedUrl,
+        poster: video.resolvedPoster || resolve(video.poster),
+        openUrl: resolve(video.shareUrl || video.embedUrl),
       })
     );
 
     overlayButton.addEventListener('click', () =>
       openInLightbox({
         type: 'video',
-        src: video.embedUrl || video.shareUrl,
+        src: resolve(video.embedUrl || video.shareUrl),
         title: video.title,
-        poster: video.resolvedPoster || resolve(video.poster, true),
-        openUrl: video.shareUrl || video.embedUrl,
+        poster: video.resolvedPoster || resolve(video.poster),
+        openUrl: resolve(video.shareUrl || video.embedUrl),
       })
     );
 
@@ -203,15 +215,15 @@
     previewBtn.addEventListener('click', () =>
       openInLightbox({
         type: 'video',
-        src: video.embedUrl || video.shareUrl,
+        src: resolve(video.embedUrl || video.shareUrl),
         title: video.title,
-        poster: video.resolvedPoster || resolve(video.poster, true),
-        openUrl: video.shareUrl || video.embedUrl,
+        poster: video.resolvedPoster || resolve(video.poster),
+        openUrl: resolve(video.shareUrl || video.embedUrl),
       })
     );
 
     const openLink = document.createElement('a');
-    openLink.href = video.shareUrl || video.embedUrl;
+    openLink.href = resolve(video.shareUrl || video.embedUrl);
     openLink.target = '_blank';
     openLink.rel = 'noopener';
     openLink.className = 'btn-primary btn-sm';
@@ -238,10 +250,10 @@
     article.className = 'resource-card media-card';
 
     const previewWrap = document.createElement('div');
-    previewWrap.className = 'resource-preview';
+    previewWrap.className = 'resource-preview preview';
 
     const iframe = document.createElement('iframe');
-    const pdfUrl = pdf.resolvedFile || resolve(pdf.filePath, true);
+    const pdfUrl = pdf.resolvedFile || resolve(pdf.filePath);
     iframe.src = `${pdfUrl}#page=1&toolbar=0&navpanes=0&scrollbar=0`;
     iframe.loading = 'lazy';
     iframe.title = `${pdf.title} preview`;
@@ -287,11 +299,11 @@
     previewBtn.className = 'btn-secondary btn-sm';
     previewBtn.textContent = 'Preview';
     previewBtn.addEventListener('click', () =>
-      openInLightbox({ type: 'pdf', src: pdf.resolvedFile || resolve(pdf.filePath, true), title: pdf.title })
+      openInLightbox({ type: 'pdf', src: pdf.resolvedFile || resolve(pdf.filePath), title: pdf.title })
     );
 
     const openLink = document.createElement('a');
-    openLink.href = pdf.resolvedFile || resolve(pdf.filePath, true);
+    openLink.href = pdf.resolvedFile || resolve(pdf.filePath);
     openLink.target = '_blank';
     openLink.rel = 'noopener';
     openLink.className = 'btn-primary btn-sm';

@@ -2,6 +2,7 @@
   const pathUtils = window.LIP_PATHS || {};
   const toSiteUrl = pathUtils.toSiteUrl || ((path) => path);
   const withBase = pathUtils.buildUrl || pathUtils.withBase || ((path) => path);
+  const normalizeAssetUrl = pathUtils.normalizeAssetUrl || ((path) => path);
   const basePath = pathUtils.basePath || '/lip-site';
 
   const STYLE_ITEMS = [
@@ -112,7 +113,7 @@
   const styles = STYLE_ITEMS.map((item, index) => ({
     ...item,
     badge: item.badge || `Style ${String(index + 1).padStart(2, '0')}`,
-    resolvedImage: toSiteUrl(item.imagePath, { encode: true }),
+    resolvedImage: normalizeAssetUrl(item.imagePath),
   }));
 
   const videos = VIDEO_ITEMS.map((item, index) => {
@@ -122,14 +123,14 @@
       badge: item.badge || `Video ${String(index + 1).padStart(2, '0')}`,
       embedUrl,
       shareUrl: item.shareUrl || embedUrl,
-      resolvedPoster: item.poster ? toSiteUrl(item.poster, { encode: true }) : '',
+      resolvedPoster: item.poster ? normalizeAssetUrl(item.poster) : '',
     };
   });
 
   const pdfs = PDF_ITEMS.map((item, index) => ({
     ...item,
     badge: item.badge || `PDF ${String(index + 1).padStart(2, '0')}`,
-    resolvedFile: toSiteUrl(item.filePath, { encode: true }),
+    resolvedFile: normalizeAssetUrl(item.filePath),
   }));
 
   window.LIP_LIBRARY = {

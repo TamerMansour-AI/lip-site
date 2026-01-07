@@ -62,12 +62,24 @@
     return toSiteUrl(path, { encode });
   }
 
+  function normalizeAssetUrl(path) {
+    if (!path) return path;
+    let decoded = path;
+    try {
+      decoded = decodeURIComponent(path);
+    } catch (error) {
+      // Ignore malformed encoding and use the raw path.
+    }
+    return toSiteUrl(decoded, { encode: false });
+  }
+
   window.__BASE_PATH__ = rootPath || '/lip-site';
   window.LIP_PATHS = {
     basePath: rootPath,
     buildUrl,
     withBase: buildUrl,
     toSiteUrl,
+    normalizeAssetUrl,
   };
   window.toSiteUrl = toSiteUrl;
 })();

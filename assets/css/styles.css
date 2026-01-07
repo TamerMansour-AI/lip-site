@@ -398,8 +398,16 @@ textarea:focus-visible {
   pointer-events: auto;
 }
 
+.preview.has-preview .preview-overlay {
+  display: none !important;
+}
+
 .resource-preview.has-preview .preview-overlay {
   display: none !important;
+}
+
+.preview.preview-error .preview-overlay {
+  display: flex;
 }
 
 .resource-preview.preview-error .preview-overlay {
