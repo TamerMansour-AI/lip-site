@@ -1,6 +1,7 @@
 (function () {
   const paths = window.LIP_PATHS || {};
   const withBase = paths.buildUrl || paths.withBase || ((path) => path);
+  const normalizeAssetUrl = paths.normalizeAssetUrl || withBase;
   const BASE = '/assets/infographics/';
 
   const ITEMS = [
@@ -25,7 +26,7 @@
   if (!grid) return;
 
   function buildCard(item) {
-    const fullSrc = withBase(`${BASE}${item.file}`, { encode: true });
+    const fullSrc = normalizeAssetUrl(`${BASE}${item.file}`);
     const article = document.createElement('article');
     article.className = 'section-card infographic-card';
 

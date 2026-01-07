@@ -1,4 +1,6 @@
 (function () {
+  const pathUtils = window.LIP_PATHS || {};
+  const normalizeAssetUrl = pathUtils.normalizeAssetUrl || ((path) => path);
   const BASE_PATH = detectBasePath();
 
   const DRIVE_LINKS = [
@@ -67,11 +69,18 @@
     },
   ];
 
-  const ITEMS = [...DRIVE_LINKS, ...PDF_ITEMS].map((item) => ({
-    ...item,
-    href: withBase(item.href),
-    previewSrc: item.type === 'video' ? drivePreview(item.href) : `${withBase(item.href)}#view=FitH`,
-  }));
+  const ITEMS = [...DRIVE_LINKS, ...PDF_ITEMS].map((item) => {
+    const normalizedHref = normalizeAssetUrl(withBase(item.href));
+    const previewSrc =
+      item.type === 'video'
+        ? normalizeAssetUrl(drivePreview(item.href))
+        : `${normalizedHref}#view=FitH`;
+    return {
+      ...item,
+      href: normalizedHref,
+      previewSrc,
+    };
+  });
 
   const grid = document.getElementById('resource-grid');
   const modal = document.getElementById('resource-modal');
