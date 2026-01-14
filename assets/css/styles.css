@@ -1452,3 +1452,38 @@ footer {
     transform: translateY(0);
   }
 }
+
+.proof-cards .proof-card{
+  display:flex;
+  gap:18px;
+  align-items:flex-start;
+  padding:18px;
+}
+
+.proof-cards .proof-thumb{
+  flex:0 0 240px;
+  max-width:240px;
+  display:block;
+}
+
+.proof-cards .proof-thumb img{
+  width:240px;
+  height:auto;
+  border-radius:14px;
+  display:block;
+}
+
+.proof-cards .proof-body{
+  flex:1;
+}
+
+@media (max-width: 700px){
+  .proof-cards .proof-card{
+    flex-direction:column;
+  }
+  .proof-cards .proof-thumb,
+  .proof-cards .proof-thumb img{
+    width:100%;
+    max-width:420px;
+  }
+}
