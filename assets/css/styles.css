@@ -1147,19 +1147,17 @@ footer {
   height: 1.5rem;
 }
 
-.section-card svg {
-  width: 1.25rem;
-  height: 1.25rem;
-}
-
-.section-card img,
-.section-card svg,
-.trust-card img,
-.trust-card svg {
+.feature-icon img,
+.feature-icon svg {
   max-height: 72px;
   max-width: 72px;
   width: auto;
   object-fit: contain;
+}
+
+.section-card svg {
+  width: 1.25rem;
+  height: 1.25rem;
 }
 
 .infographic-card .infographic-thumb {
@@ -1461,16 +1459,18 @@ footer {
 }
 
 .proof-cards .proof-thumb{
-  flex:0 0 240px;
-  max-width:240px;
-  display:block;
+  flex: 0 0 clamp(220px, 22vw, 340px);
+  max-width: clamp(220px, 22vw, 340px);
+  display: block;
 }
 
 .proof-cards .proof-thumb img{
-  width:240px;
-  height:auto;
-  border-radius:14px;
-  display:block;
+  width: 100%;
+  max-width: none;
+  max-height: none;
+  height: auto;
+  border-radius: 14px;
+  display: block;
 }
 
 .proof-cards .proof-body{
@@ -1481,9 +1481,12 @@ footer {
   .proof-cards .proof-card{
     flex-direction:column;
   }
-  .proof-cards .proof-thumb,
+  .proof-cards .proof-thumb{
+    flex: 0 0 auto;
+    max-width: 520px;
+    width: 100%;
+  }
   .proof-cards .proof-thumb img{
-    width:100%;
-    max-width:420px;
+    width: 100%;
   }
 }
