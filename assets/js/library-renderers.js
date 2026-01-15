@@ -128,67 +128,11 @@
     const article = document.createElement('article');
     article.className = 'resource-card media-card';
 
-    const previewWrap = document.createElement('div');
-    previewWrap.className = 'resource-preview video-preview preview';
-
-    const iframe = document.createElement('iframe');
-    iframe.src = resolve(video.embedUrl || video.shareUrl);
-    iframe.loading = 'lazy';
-    iframe.title = `${video.title} preview`;
-    iframe.allow = 'autoplay; fullscreen';
-    iframe.setAttribute('allowfullscreen', 'true');
-    iframe.setAttribute('tabindex', '-1');
-    iframe.setAttribute('aria-hidden', 'true');
-    iframe.className = 'media-thumb__frame';
-
-    const overlayButton = document.createElement('button');
-    overlayButton.type = 'button';
-    overlayButton.className = 'media-thumb__overlay';
-    overlayButton.setAttribute('aria-label', `Open ${video.title} preview`);
-
-    const fallback = document.createElement('div');
-    fallback.className = 'resource-fallback resource-fallback--stack preview-overlay hidden';
-
-    const fallbackText = document.createElement('p');
-    fallbackText.className = 'resource-fallback__text';
-    fallbackText.textContent = 'Video preview unavailable.';
-
-    const fallbackBtn = document.createElement('button');
-    fallbackBtn.type = 'button';
-    fallbackBtn.className = 'btn-primary btn-sm';
-    fallbackBtn.textContent = 'Open video';
-    fallbackBtn.addEventListener('click', () =>
-      openInLightbox({
-        type: 'video',
-        src: resolve(video.embedUrl || video.shareUrl),
-        title: video.title,
-        poster: video.resolvedPoster || resolve(video.poster),
-        openUrl: resolve(video.shareUrl || video.embedUrl),
-      })
-    );
-
-    overlayButton.addEventListener('click', () =>
-      openInLightbox({
-        type: 'video',
-        src: resolve(video.embedUrl || video.shareUrl),
-        title: video.title,
-        poster: video.resolvedPoster || resolve(video.poster),
-        openUrl: resolve(video.shareUrl || video.embedUrl),
-      })
-    );
-
-    fallback.append(fallbackText, fallbackBtn);
-
-    const handleVideoLoaded = () => setPreviewState(previewWrap, fallback, 'loaded');
-    const handleVideoError = () => {
-      setPreviewState(previewWrap, fallback, 'error');
-      previewWrap.classList.add('resource-preview--fallback');
-    };
-
-    iframe.addEventListener('load', handleVideoLoaded);
-    iframe.addEventListener('error', handleVideoError);
-
-    previewWrap.append(iframe, overlayButton, fallback);
+    const previewWrap = buildEmbedShell({
+      kind: 'Video',
+      src: resolve(video.embedUrl || video.shareUrl),
+      openUrl: resolve(video.shareUrl || video.embedUrl),
+    });
 
     const body = document.createElement('div');
     body.className = 'resource-card__body';
@@ -249,32 +193,13 @@
     const article = document.createElement('article');
     article.className = 'resource-card media-card';
 
-    const previewWrap = document.createElement('div');
-    previewWrap.className = 'resource-preview preview';
-
-    const iframe = document.createElement('iframe');
     const pdfUrl = pdf.resolvedFile || resolve(pdf.filePath);
-    iframe.src = `${pdfUrl}#page=1&toolbar=0&navpanes=0&scrollbar=0`;
-    iframe.loading = 'lazy';
-    iframe.title = `${pdf.title} preview`;
-    iframe.className = 'media-thumb__pdf';
-    iframe.setAttribute('tabindex', '-1');
-    iframe.style.pointerEvents = 'none';
-
-    const fallback = document.createElement('div');
-    fallback.className = 'resource-fallback preview-overlay hidden';
-    fallback.textContent = 'PDF preview unavailable. Use Open to view the file.';
-
-    const handlePdfLoaded = () => setPreviewState(previewWrap, fallback, 'loaded');
-    const handlePdfError = () => {
-      setPreviewState(previewWrap, fallback, 'error');
-      previewWrap.classList.add('resource-preview--fallback');
-    };
-
-    iframe.addEventListener('load', handlePdfLoaded);
-    iframe.addEventListener('error', handlePdfError);
-
-    previewWrap.append(iframe, fallback);
+    const previewWrap = buildEmbedShell({
+      kind: 'PDF',
+      src: `${pdfUrl}#page=1&toolbar=0&navpanes=0&scrollbar=0`,
+      openUrl: pdfUrl,
+      downloadUrl: pdfUrl,
+    });
 
     const body = document.createElement('div');
     body.className = 'resource-card__body';
@@ -323,6 +248,54 @@
       const card = buildPdfCard(pdf);
       container.appendChild(card);
     });
+  }
+
+  function buildEmbedShell({ kind, src, openUrl, downloadUrl }) {
+    const shell = document.createElement('div');
+    shell.className = 'embed-shell';
+    shell.dataset.kind = kind;
+    shell.dataset.src = src;
+    shell.dataset.open = openUrl || src;
+    if (downloadUrl) {
+      shell.dataset.download = downloadUrl;
+    }
+
+    const placeholder = document.createElement('div');
+    placeholder.className = 'embed-placeholder';
+
+    const badge = document.createElement('div');
+    badge.className = 'embed-badge';
+    badge.textContent = `${kind} preview`;
+
+    const loadButton = document.createElement('button');
+    loadButton.type = 'button';
+    loadButton.className = 'embed-load btn-secondary btn-sm';
+    loadButton.textContent = 'Load preview';
+
+    const openLink = document.createElement('a');
+    openLink.className = 'embed-open btn-secondary btn-sm';
+    openLink.href = openUrl || src;
+    openLink.target = '_blank';
+    openLink.rel = 'noopener';
+    openLink.textContent = 'Open in new tab';
+
+    placeholder.append(badge, loadButton, openLink);
+
+    if (downloadUrl) {
+      const downloadLink = document.createElement('a');
+      downloadLink.className = 'embed-download btn-secondary btn-sm';
+      downloadLink.href = downloadUrl;
+      downloadLink.setAttribute('download', '');
+      downloadLink.textContent = 'Download';
+      placeholder.appendChild(downloadLink);
+    }
+
+    const fallback = document.createElement('div');
+    fallback.className = 'embed-fallback';
+    fallback.textContent = 'Preview unavailable here. Open in new tab.';
+
+    shell.append(placeholder, fallback);
+    return shell;
   }
 
   document.addEventListener('DOMContentLoaded', () => {
