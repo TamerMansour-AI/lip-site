@@ -339,6 +339,74 @@ textarea:focus-visible {
   grid-template-rows: auto 1fr;
 }
 
+.embed-shell {
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  border-radius: 16px;
+  background: rgba(226, 232, 240, 0.35);
+  overflow: hidden;
+  display: grid;
+  gap: 0.75rem;
+  padding: 0.75rem;
+}
+
+.embed-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 0.35rem 0.4rem;
+}
+
+.embed-badge {
+  font-size: 12px;
+  font-weight: 600;
+  opacity: 0.8;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.embed-load {
+  white-space: nowrap;
+}
+
+.embed-open,
+.embed-download {
+  white-space: nowrap;
+}
+
+.embed-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  padding: 0 0.35rem 0.5rem;
+}
+
+.embed-iframe {
+  width: 100%;
+  height: 420px;
+  border: 0;
+  display: block;
+  background: #0b1021;
+  border-radius: 12px;
+}
+
+.embed-fallback {
+  display: none;
+  padding: 0 0.35rem 0.5rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.embed-failed .embed-iframe {
+  display: none;
+}
+
+.embed-failed .embed-fallback {
+  display: block;
+}
+
 .resource-preview {
   position: relative;
   aspect-ratio: 16 / 9;
@@ -583,6 +651,9 @@ textarea:focus-visible {
   .resource-modal__meta {
     flex-direction: column;
     align-items: flex-start;
+  }
+  .embed-iframe {
+    height: 320px;
   }
 }
 
