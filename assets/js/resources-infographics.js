@@ -7,12 +7,12 @@
   const ITEMS = [
     {
       file: 'lip-infographic-01-what-is-lip.png',
-      title: 'What is a Lesson Intelligence Pack (LIP)?',
+      title: 'What is a CLEAR pack?',
       description: 'A visual overview of the pilot pack and the 3-step flow.',
     },
     {
       file: 'lip-infographic-02-whats-inside-lip.png',
-      title: 'What’s inside a Lesson Intelligence Pack (LIP)?',
+      title: 'What’s inside a CLEAR pack?',
       description: 'Four-quadrant breakdown of outputs and classroom-ready assets.',
     },
     {

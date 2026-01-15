@@ -39,8 +39,8 @@
     },
     {
       type: 'pdf',
-      title: 'LIP Pilot Snapshot',
-      subtitle: 'At-a-glance PDF for the Lesson Intelligence Packs pilot.',
+      title: 'CLEAR Pilot Snapshot',
+      subtitle: 'At-a-glance PDF for the CLEAR pilot.',
       href: '/lip-site/assets/docs/LIP_Pilot_Snapshot.pdf',
     },
     {
@@ -51,20 +51,20 @@
     },
     {
       type: 'pdf',
-      title: 'LIP Sample Frames Guide',
-      subtitle: 'Reference frames and guidance for LIP visuals.',
+      title: 'CLEAR Sample Frames Guide',
+      subtitle: 'Reference frames and guidance for CLEAR visuals.',
       href: '/lip-site/assets/docs/LIP_Sample_Frames_Guide.pdf',
     },
     {
       type: 'pdf',
-      title: 'LIP Style Menu',
-      subtitle: 'Menu of visual style directions for Lesson Intelligence Packs.',
+      title: 'CLEAR Style Menu',
+      subtitle: 'Menu of visual style directions for CLEAR.',
       href: '/lip-site/assets/docs/LIP_Style_Menu.pdf',
     },
     {
       type: 'pdf',
-      title: 'LIP Short FAQ',
-      subtitle: 'Quick answers to common questions about LIP.',
+      title: 'CLEAR Short FAQ',
+      subtitle: 'Quick answers to common questions about CLEAR.',
       href: '/lip-site/assets/docs/LIP_Short_FAQ.pdf',
     },
   ];
